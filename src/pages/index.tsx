@@ -112,7 +112,6 @@ const Home: NextPage = () => {
           <div className="flex h-12 w-full border-[1px] border-gray-500/25 rounded">
             <input
               type="text"
-              autoFocus
               ref={todoInput}
               placeholder={error ? "Cannot be empty" : "Type your to do"}
               className={
@@ -133,7 +132,7 @@ const Home: NextPage = () => {
 
           {/* Todo List */}
           <div className="w-full flex flex-col justify-center items-start gap-3 text-center">
-            {filteredTodos.map((task: ITask, index: number) => {
+            {filteredTodos.map((task: ITask) => {
               return (
                 <Task
                   key={task.id}

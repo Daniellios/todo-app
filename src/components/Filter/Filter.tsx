@@ -45,7 +45,10 @@ const Filter = ({
 
   return (
     <div className="w-full flex justify-between  items-center">
-      <span className="text-xs sm:text-lg text-gray-500/70 w-[130px]">
+      <span
+        data-testid="items-counter"
+        className="text-xs sm:text-lg text-gray-500/70 w-[130px]"
+      >
         {tasksLeft()}
       </span>
       <div className="flex gap-1 md:gap-4">
