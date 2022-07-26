@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-100;
+  }
+}
+
+@layer components {
+  .filter-button {
+    @apply text-gray-500 px-1 text-xs sm:text-lg border-[1px] border-transparent hover:border-[1px] hover:border-pink-300/50 rounded;
+  }
+  .filter-button-active {
+    @apply text-gray-500 px-1 text-xs sm:text-lg border-[1px] border-pink-300/50 rounded bg-pink-300/50;
+  }
+  .input-error {
+    @apply h-full w-full px-4 rounded border-[1px] border-red-500 outline-none placeholder:text-red-500;
+  }
+}
