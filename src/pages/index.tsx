@@ -33,6 +33,7 @@ const Home: NextPage = () => {
   }
 
   // Local Storage Setup
+  // Сейчас в нем нет особого смысла, т.к каждый раз устанавливаю исходный To Do List
   const saveToLocalStorage = (): void => {
     if (localStorage.getItem("todoList") === null) {
       localStorage.setItem("todoList", JSON.stringify([]))

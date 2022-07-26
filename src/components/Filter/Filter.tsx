@@ -8,6 +8,8 @@ const Filter = ({
   currentStatus,
 }: IFilterProps) => {
   //Tasks Left Counter
+  //По картинке примера немного непонятно как отображается количество оставшихся Todo, поэтому всегда считается количество именно незавершенных заданий
+  // независимо от текущего фильтра
   const tasksLeft = (): string => {
     let msg = ""
     if (todoList) {
