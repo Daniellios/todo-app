@@ -36,9 +36,9 @@ const Home: NextPage = () => {
   // Сейчас в нем нет особого смысла, т.к каждый раз устанавливаю исходный To Do List
   const saveToLocalStorage = (): void => {
     if (localStorage.getItem("todoList") === null) {
-      localStorage.setItem("todoList", JSON.stringify([]))
-    } else {
       localStorage.setItem("todoList", JSON.stringify(todoList))
+    } else {
+      localStorage.setItem("todoList", JSON.stringify([]))
     }
   }
 
@@ -124,6 +124,7 @@ const Home: NextPage = () => {
               onChange={handleChange}
             />
             <button
+              data-testid="Add"
               className="flex justify-center items-center text-gray-600 px-1 border-l-[1px] border-gray-500/25  text-center text-sm w-32 hover:cursor-pointer hover:bg-pink-300/40"
               onClick={addTask}
             >

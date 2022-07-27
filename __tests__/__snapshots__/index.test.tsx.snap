@@ -24,6 +24,7 @@ exports[`renders homepage correctly 1`] = `
         />
         <button
           class="flex justify-center items-center text-gray-600 px-1 border-l-[1px] border-gray-500/25 text-center text-sm w-32 hover:cursor-pointer hover:bg-pink-300/40"
+          data-testid="Add"
         >
           Add To Do
         </button>

@@ -3,7 +3,6 @@ import { render, fireEvent, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 import Home from "../src/pages"
-import Task from "../src/components/Task/Task"
 import Filter from "../src/components/Filter/Filter"
 
 const addTodo = (list: ITask[], item: ITask) => [...list, item]
@@ -33,14 +32,13 @@ it("Adds new to do correctly", () => {
   expect(result).toEqual(expected)
 })
 
-it("updates items left count correctly", () => {
+it("Counts items left correctly", () => {
+  const mockFN = jest.fn()
   render(
     <Filter
       todoList={startTodoList}
-      setTodoList={() => {
-        addTodo
-      }}
-      setStatus={() => {}}
+      setTodoList={mockFN}
+      setStatus={mockFN}
       filteredTodos={startTodoList}
       currentStatus={"all"}
     />
@@ -48,4 +46,23 @@ it("updates items left count correctly", () => {
 
   const todosCount = screen.getByTestId("items-counter")
   expect(todosCount).toHaveTextContent("Nothing to do :)")
+})
+
+test("if handles onclick ", () => {
+  const onClick = jest.fn()
+  render(<Home />)
+  const buttonElement = screen.getByTestId("Add")
+  buttonElement.addEventListener("click", onClick)
+  fireEvent.click(buttonElement)
+  expect(onClick).toHaveBeenCalledTimes(1)
+})
+
+test("if error is shown on empty input", () => {
+  const onClick = jest.fn()
+  render(<Home />)
+  const inputElement = screen.getByPlaceholderText("Type your to do")
+  const addTodoBtn = screen.getByText("Add To Do")
+  addTodoBtn.addEventListener("click", onClick)
+  fireEvent.click(addTodoBtn)
+  expect(inputElement).toHaveClass("input-error")
 })
