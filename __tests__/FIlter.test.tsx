@@ -21,3 +21,8 @@ test("if all filter is active by default", () => {
   const buttonElement = screen.getByText("All")
   expect(buttonElement).toHaveClass("filter-button-active")
 })
+
+it("Counts items left correctly", () => {
+  const todosCount = screen.getByTestId("items-counter")
+  expect(todosCount).toHaveTextContent("Nothing to do :)")
+})

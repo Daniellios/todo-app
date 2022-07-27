@@ -32,22 +32,6 @@ it("Adds new to do correctly", () => {
   expect(result).toEqual(expected)
 })
 
-it("Counts items left correctly", () => {
-  const mockFN = jest.fn()
-  render(
-    <Filter
-      todoList={startTodoList}
-      setTodoList={mockFN}
-      setStatus={mockFN}
-      filteredTodos={startTodoList}
-      currentStatus={"all"}
-    />
-  )
-
-  const todosCount = screen.getByTestId("items-counter")
-  expect(todosCount).toHaveTextContent("Nothing to do :)")
-})
-
 test("if handles onclick ", () => {
   const onClick = jest.fn()
   render(<Home />)
