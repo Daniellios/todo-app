@@ -1,9 +1,19 @@
 import React from "react"
 import { AiOutlineCheck } from "react-icons/ai"
+import { motion } from "framer-motion"
+import { listItem } from "../../animations/framerConfigs"
 
 const Task = ({ task, isCompleted, id, completeTask }: ITaskProps) => {
   return (
-    <div className="w-full  border-b-[1px] border-gray-500/25 ">
+    <motion.div
+      initial={{ size: 0, opacity: 0 }}
+      animate={{ size: 1, opacity: 1 }}
+      transition={{
+        ease: "easeInOut",
+        duration: 0.4,
+      }}
+      className="w-full  border-b-[1px] border-gray-500/25 "
+    >
       <div className="flex justify-start items-center gap-8 py-2">
         <button
           onClick={() => completeTask(id)}
@@ -25,7 +35,7 @@ const Task = ({ task, isCompleted, id, completeTask }: ITaskProps) => {
           {task.taskName}
         </h2>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

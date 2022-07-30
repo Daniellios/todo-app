@@ -3,7 +3,6 @@ import { render, fireEvent, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 import Home from "../src/pages"
-import Filter from "../src/components/Filter/Filter"
 
 const addTodo = (list: ITask[], item: ITask) => [...list, item]
 

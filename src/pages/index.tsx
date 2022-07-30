@@ -3,6 +3,8 @@ import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
 import Task from "../components/Task/Task"
 import Filter from "../components/Filter/Filter"
+import { motion } from "framer-motion"
+import { listContainer } from "../animations/framerConfigs"
 
 const Home: NextPage = () => {
   const todoInput = useRef<HTMLInputElement>(null)
@@ -133,7 +135,8 @@ const Home: NextPage = () => {
           </div>
 
           {/* Todo List */}
-          <div className="w-full flex flex-col justify-center items-start gap-3 text-center">
+
+          <motion.div className="w-full flex flex-col justify-center items-start gap-3 text-center">
             {filteredTodos.map((task: ITask) => {
               return (
                 <Task
@@ -145,7 +148,7 @@ const Home: NextPage = () => {
                 />
               )
             })}
-          </div>
+          </motion.div>
 
           {/* Filters */}
           <Filter
