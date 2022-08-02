@@ -4,18 +4,18 @@
 
 @layer base {
   body {
-    @apply bg-slate-100;
+    @apply bg-paletteDark;
   }
 }
 
 @layer components {
   .filter-button {
-    @apply text-gray-500 px-1 text-xs sm:text-lg border-[1px] border-transparent hover:border-[1px] hover:border-pink-300/50 rounded;
+    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent hover:text-paletteTeal rounded;
   }
   .filter-button-active {
-    @apply text-gray-500 px-1 text-xs sm:text-lg border-[1px] border-pink-300/50 rounded bg-pink-300/50;
+    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent rounded bg-paletteTeal;
   }
   .input-error {
-    @apply h-full w-full px-4 rounded border-[1px] border-red-500 outline-none placeholder:text-red-500;
+    @apply h-full w-full px-4 rounded-t-md rounded-b-md rounded-r-[0] border-[1px] border-paletteRed outline-none placeholder:text-paletteRed;
   }
 }

@@ -49,7 +49,7 @@ const Filter = ({
     <div className="w-full flex justify-between  items-center">
       <span
         data-testid="items-counter"
-        className="text-xs sm:text-lg text-gray-500/70 w-[130px]"
+        className="text-xs sm:text-lg text-paletteWhite w-[130px]"
       >
         {tasksLeft()}
       </span>

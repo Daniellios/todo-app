@@ -20,7 +20,7 @@ const Task = ({ task, isCompleted, id, completeTask }: ITaskProps) => {
           className="flex justify-center items-center w-8 h-8 rounded-full border-[1px] border-gray-400 hover:cursor-pointer hover:bg-slate-500/25"
         >
           {isCompleted ? (
-            <AiOutlineCheck className="text-green-500" size={"1.5rem"} />
+            <AiOutlineCheck className="text-paletteTeal" size={"1.5rem"} />
           ) : (
             ""
           )}
@@ -28,8 +28,8 @@ const Task = ({ task, isCompleted, id, completeTask }: ITaskProps) => {
         <h2
           className={
             isCompleted
-              ? "text-xl text-gray-500/50 line-through"
-              : "text-xl text-gray-500"
+              ? "text-xl text-paletteWhite/50 line-through"
+              : "text-xl text-paletteWhite"
           }
         >
           {task.taskName}
