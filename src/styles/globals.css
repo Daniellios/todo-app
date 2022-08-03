@@ -5,17 +5,18 @@
 @layer base {
   body {
     @apply bg-paletteDark;
+    @apply transition-none;
   }
 }
 
 @layer components {
   .filter-button {
-    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent hover:text-paletteTeal rounded;
+    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent hover:text-paletteTeal rounded transition;
   }
   .filter-button-active {
-    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent rounded bg-paletteTeal;
+    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent rounded bg-paletteTeal transition;
   }
   .input-error {
-    @apply h-full w-full px-4 rounded-t-md rounded-b-md rounded-r-[0] border-[1px] border-paletteRed outline-none placeholder:text-paletteRed;
+    @apply h-full w-full px-4 rounded-t-md rounded-b-md  rounded-r-[0] border-[1px] bg-paletteDark  border-paletteRed outline-none placeholder:text-paletteRed;
   }
 }

@@ -1,15 +1,13 @@
 import React from "react"
+import { motion } from "framer-motion"
 
 const Filter = ({
   todoList,
   setTodoList,
   setStatus,
-  filteredTodos,
   currentStatus,
 }: IFilterProps) => {
   //Tasks Left Counter
-  //По картинке примера немного непонятно как отображается количество оставшихся Todo, поэтому всегда считается количество именно незавершенных заданий
-  // независимо от текущего фильтра
   const tasksLeft = (): string => {
     let msg = ""
     if (todoList) {

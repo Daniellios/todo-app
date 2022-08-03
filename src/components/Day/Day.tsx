@@ -4,8 +4,9 @@ import DayTitle from "../DayTitle/DayTitle"
 import Filter from "../Filter/Filter"
 import Form from "../Form/Form"
 import TaskList from "../TaskList/TaskList"
+import { motion, Reorder } from "framer-motion"
 
-const Day = ({ day, month }: IDayProps) => {
+const Day = ({ title }: IDayProps) => {
   const [task, setTask] = useState<string>("")
   const [todoList, setTodoList] = useState<ITask[]>([
     { taskName: "Проснуться", isCompleted: true, id: 1 },
@@ -31,13 +32,18 @@ const Day = ({ day, month }: IDayProps) => {
     )
   }
 
+  // DeleteTask
+  const deleteTask = (taskNumber: number): void => {
+    console.log("DELETE")
+    setTodoList(todoList.filter((task: ITask) => task.id !== taskNumber))
+  }
+
   // Local Storage Setup
-  // Сейчас в нем нет особого смысла, т.к каждый раз устанавливаю исходный To Do List
   const saveToLocalStorage = (): void => {
     if (localStorage.getItem("todoList") === null) {
       localStorage.setItem("todoList", JSON.stringify(todoList))
     } else {
-      localStorage.setItem("todoList", JSON.stringify([]))
+      const storageList = JSON.parse(localStorage.getItem("todoList") || "{}")
     }
   }
 
@@ -59,13 +65,13 @@ const Day = ({ day, month }: IDayProps) => {
   // Update Filtered List
   useEffect(() => {
     filterHandler()
-    saveToLocalStorage()
+    // saveToLocalStorage()
   }, [todoList, filterStatus])
 
   return (
-    <div className="flex flex-col w-full h-max gap-6 shadow-lg p-4  bg-paletteDarkGray rounded">
+    <motion.div className="flex flex-col w-full h-max gap-6 shadow-lg p-4  bg-paletteDarkGray rounded">
       {/* Header */}
-      <DayTitle day={day} month={month} />
+      <DayTitle title={title} />
 
       {/* Input */}
       <Form
@@ -73,9 +79,15 @@ const Day = ({ day, month }: IDayProps) => {
         setTask={setTask}
         setTodoList={setTodoList}
         todoList={todoList}
+        setFilterStatus={setFilterStatus}
       />
       {/* Todo List */}
-      <TaskList filteredTodos={filteredTodos} completeTask={completeTask} />
+      <TaskList
+        filteredTodos={filteredTodos}
+        completeTask={completeTask}
+        originalTodos={todoList}
+        deleteTask={deleteTask}
+      />
 
       {/* Filters */}
       <Filter
@@ -85,7 +97,7 @@ const Day = ({ day, month }: IDayProps) => {
         filteredTodos={filteredTodos}
         currentStatus={filterStatus}
       />
-    </div>
+    </motion.div>
   )
 }
 

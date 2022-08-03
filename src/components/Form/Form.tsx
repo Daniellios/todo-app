@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from "react"
 
-const Form = ({ task, setTask, setTodoList, todoList }: IFormProps) => {
+const Form = ({
+  task,
+  setTask,
+  setTodoList,
+  todoList,
+  setFilterStatus,
+}: IFormProps) => {
   const [error, setError] = useState<boolean>(false)
 
   const todoInput = useRef<HTMLInputElement>(null)
@@ -15,8 +21,10 @@ const Form = ({ task, setTask, setTodoList, todoList }: IFormProps) => {
     let newID = Number((Math.random() * 1000).toFixed(2))
     if (task !== "") {
       const newTask = { taskName: task, isCompleted: false, id: newID }
-      setTodoList([...todoList, newTask])
+      todoList.unshift(newTask)
+      setTodoList([...todoList])
       setTask("")
+      setFilterStatus("all")
     } else {
       showError()
     }

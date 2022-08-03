@@ -1,11 +1,9 @@
 import React from "react"
 
-const DayTitle = ({ day, month }: IDayTitleProps) => {
+const DayTitle = ({ title }: IDayTitleProps) => {
   return (
     <div className="w-full flex items-center justify-center">
-      <h2 className="text-paletteTeal text-3xl ">
-        {day} of {month}
-      </h2>
+      <h2 className="text-paletteTeal text-3xl ">{title}</h2>
     </div>
   )
 }
