@@ -4,19 +4,41 @@
 
 @layer base {
   body {
-    @apply bg-paletteDark;
-    @apply transition-none;
+    @apply bg-paletteDark transition-none selection:bg-paletteTeal;
   }
 }
 
 @layer components {
   .filter-button {
-    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent hover:text-paletteTeal rounded transition;
+    @apply text-paletteWhite px-1 sm:text-lg border-[1px] border-transparent hover:text-paletteTeal rounded transition;
   }
   .filter-button-active {
-    @apply text-paletteWhite px-1 text-xs sm:text-lg border-[1px] border-transparent rounded bg-paletteTeal transition;
+    @apply text-paletteWhite px-1  sm:text-lg border-[1px] border-transparent rounded bg-paletteTeal transition;
   }
   .input-error {
     @apply h-full w-full px-4 rounded-t-md rounded-b-md  rounded-r-[0] border-[1px] bg-paletteDark  border-paletteRed outline-none placeholder:text-paletteRed;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 1px;
+    height: 2px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    color: "#00adb5";
+    background: "#00adb5";
+    border-radius: 100vh;
+    border: 3px solid #eeeeee;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: "#c0a0b9";
   }
 }

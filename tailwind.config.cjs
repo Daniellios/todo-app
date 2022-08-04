@@ -13,7 +13,14 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Simple 16 column grid
-        daysList: "repeat(3, minmax(calc(33% - 4rem) , 1fr))",
+        daysListXl: "repeat(2, minmax(calc(50% - 4rem), 1fr))",
+        daysListMd: "repeat(1, calc(86% - 4rem))",
+        daysListSm: "repeat(1, calc(100% - 4rem))",
+        daysListTiny: "repeat(1, calc(100% ))",
+      },
+      screens: {
+        tiny: "475px",
+        // => @media (min-width: 475px) { ... }
       },
     },
     plugins: [],

@@ -2,13 +2,10 @@ import React from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Task from "../Task/Task"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store/store"
 
-const TaskList = ({
-  filteredTodos,
-  completeTask,
-  deleteTask,
-  originalTodos,
-}: ITaskListProps) => {
+const TaskList = ({ filteredTodos, originalTodos }: ITaskListProps) => {
   return (
     <motion.div className="w-full flex flex-col justify-center items-center gap-3 text-center">
       <AnimatePresence>
@@ -20,8 +17,6 @@ const TaskList = ({
                 task={task}
                 isCompleted={task.isCompleted}
                 id={task.id}
-                completeTask={completeTask}
-                deleteTask={deleteTask}
               />
             )
           })
@@ -31,7 +26,7 @@ const TaskList = ({
             animate={{ opacity: 1 }}
             className="text-2xl text-paletteWhite"
           >
-            Add Something To Do For Today 👆
+            Add Something To Do 👆
           </motion.p>
         )}
       </AnimatePresence>

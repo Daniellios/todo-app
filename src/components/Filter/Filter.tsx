@@ -44,14 +44,14 @@ const Filter = ({
   }
 
   return (
-    <div className="w-full flex justify-between  items-center">
+    <div className="w-full flex justify-between gap-4 items-center sm:flex-row">
       <span
         data-testid="items-counter"
-        className="text-xs sm:text-lg text-paletteWhite w-[130px]"
+        className="order-1 text-center hidden sm:flex md:order-none md:text-left  md:text-lg text-paletteWhite  md:w-[130px] "
       >
         {tasksLeft()}
       </span>
-      <div className="flex gap-1 md:gap-4">
+      <div className="flex gap-1 md:gap-4 order-2  md:order-none">
         <button
           onClick={filterAll}
           className={
@@ -81,8 +81,10 @@ const Filter = ({
           Completed
         </button>
       </div>
-
-      <button onClick={clearCompleted} className="filter-button">
+      <button
+        onClick={clearCompleted}
+        className="filter-button order-3  md:order-none"
+      >
         Clear Completed
       </button>
     </div>
