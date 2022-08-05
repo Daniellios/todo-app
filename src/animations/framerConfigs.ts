@@ -10,3 +10,22 @@ export const listAnimation = {
   hidden: { x: -100, opacity: 0.4 },
   visible: { x: 0, opacity: 1 },
 }
+
+// TASK
+export const taskAnimation = {
+  hidden: { size: 0, opacity: 0 },
+  visible: {
+    size: 1,
+    opacity: 1,
+    transition: {
+      ease: "easeInOut",
+      duration: 0.3,
+    },
+  },
+}
+
+// BASIC OPACITY
+export const basicOpacityAnimation = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+}

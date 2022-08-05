@@ -2,12 +2,14 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import { AnimatePresence, motion, Reorder } from "framer-motion"
 import List from "../components/List/List"
-import Header from "../components/Header/Header"
+import Header from "../components/ControlPanel/ControlPanel"
 import { useSelector } from "react-redux"
 import { selectAllLists } from "../store/dayLIstSlice"
 
 const Home: NextPage = () => {
   const lists = useSelector(selectAllLists)
+
+  console.log(lists)
 
   return (
     <>

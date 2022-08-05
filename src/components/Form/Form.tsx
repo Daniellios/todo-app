@@ -1,17 +1,15 @@
 import { nanoid } from "@reduxjs/toolkit"
 import React, { useState, useRef, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { addTask } from "../../store/todoListSlice"
+import { addTask } from "../../store/dayLIstSlice"
 
-const Form = ({ setTodoList, todoList, setFilterStatus }: IFormProps) => {
+const Form = ({ list }: IFormProps) => {
   const [error, setError] = useState<boolean>(false)
   const dispatch = useDispatch()
 
   const todoInput = useRef<HTMLInputElement>(null)
 
   const [task, setTask] = useState<string>("")
-
-  console.log(todoList)
 
   // Task Text Setup
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -20,9 +18,8 @@ const Form = ({ setTodoList, todoList, setFilterStatus }: IFormProps) => {
 
   const handleTask = (): void => {
     if (task !== "") {
-      dispatch(addTask(task))
+      dispatch(addTask({ ID: list.listID, task: task }))
       setTask("")
-      setFilterStatus("all")
     } else {
       showError()
     }
@@ -60,7 +57,7 @@ const Form = ({ setTodoList, todoList, setFilterStatus }: IFormProps) => {
       <button
         data-testid="Add"
         className="flex justify-center items-center text-paletteWhite font-semibold px-1 border-l-[1px] border-gray-500/25 transition text-center text-sm w-32 hover:cursor-pointer hover:bg-paletteTeal rounded-r-md"
-        onClick={handleTask}
+        onClick={() => handleTask()}
       >
         Add To Do
       </button>

@@ -1,29 +1,30 @@
 import React from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Task from "../Task/Task"
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { RootState } from "../../store/store"
+import { basicOpacityAnimation } from "../../animations/framerConfigs"
 
-const TaskList = ({ filteredTodos, originalTodos }: ITaskListProps) => {
+const TaskList = ({ todos, listID }: ITaskListComponent) => {
   return (
     <motion.div className="w-full flex flex-col justify-center items-center gap-3 text-center">
       <AnimatePresence>
-        {originalTodos.length > 0 ? (
-          filteredTodos.map((task: ITask) => {
+        {todos.length > 0 ? (
+          todos.map((task: ITask) => {
             return (
               <Task
                 key={task.id}
-                task={task}
+                task={task.taskName}
                 isCompleted={task.isCompleted}
-                id={task.id}
+                listID={listID}
+                taskID={task.id}
               />
             )
           })
         ) : (
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            variants={basicOpacityAnimation}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0 }}
             className="text-2xl text-paletteWhite"
           >
             Add Something To Do 👆

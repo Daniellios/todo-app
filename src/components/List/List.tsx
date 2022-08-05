@@ -1,16 +1,14 @@
 import React from "react"
 import { useEffect, useRef, useState } from "react"
-import Filter from "../Filter/Filter"
 import Form from "../Form/Form"
 import TaskList from "../TaskList/TaskList"
 import { AnimatePresence, motion, Reorder } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../../store/store"
 import { ImCross } from "react-icons/im"
 import {
   deleteList,
-  selectAllLists,
   setListName,
+  selectAllLists,
 } from "../../store/dayLIstSlice"
 
 import { AiOutlineCheck } from "react-icons/ai"
@@ -28,16 +26,16 @@ const List = ({ list }: IListComponent) => {
   const [title, setTitle] = useState<string>("")
   const [isTitleName, setIsTitleName] = useState<boolean>(false)
 
-  const [filterStatus, setFilterStatus] = useState<string>("all")
-  const [filteredTodos, setFilteredTodos] = useState<ITask[]>([])
-
   const onTitleChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
     setTitle(e.currentTarget.value)
 
   const confirmTitle = (): void => {
     if (title) {
       dispatch(
-        setListName({ listID: list.listID, title, todoList: list.todoList })
+        setListName({
+          ...list,
+          title,
+        })
       )
       setIsTitleName(true)
     }
@@ -52,29 +50,13 @@ const List = ({ list }: IListComponent) => {
     }
   }
 
-  // Filter Handler
-  const filterHandler = (): void => {
-    switch (filterStatus) {
-      case "completed":
-        setFilteredTodos(todoList.filter((task) => task.isCompleted))
-        break
-      case "active":
-        setFilteredTodos(todoList.filter((task) => !task.isCompleted))
-        break
-      case "all":
-        setFilteredTodos(todoList)
-        break
-    }
-  }
-
   // Update Filtered List
   useEffect(() => {
-    filterHandler()
     if (null !== titleInput.current) {
       titleInput.current.focus()
     }
     // saveToLocalStorage()
-  }, [todoList, filterStatus, selectAllLists])
+  }, [todoList, selectAllLists])
 
   return (
     <motion.div
@@ -131,22 +113,17 @@ const List = ({ list }: IListComponent) => {
 
       {isTitleName ? (
         <>
-          <Form
-            setTodoList={setTodoList}
-            todoList={todoList}
-            setFilterStatus={setFilterStatus}
-          />
-          <TaskList
-            filteredTodos={list.todoList}
-            originalTodos={list.todoList}
-          />
-          <Filter
-            todoList={todoList}
-            setTodoList={setTodoList}
-            setStatus={setFilterStatus}
-            filteredTodos={filteredTodos}
-            currentStatus={filterStatus}
-          />
+          <Form list={list} />
+          <TaskList todos={list.todoList} listID={list.listID} />
+          {/* FOOTER */}
+          <div className="w-full flex justify-between gap-4 items-center sm:flex-row">
+            <span
+              data-testid="items-counter"
+              className="order-1 text-center  md:order-none md:text-left  md:text-lg text-paletteWhite  md:w-[130px] "
+            >
+              {list.listCount}
+            </span>
+          </div>
         </>
       ) : (
         <></>

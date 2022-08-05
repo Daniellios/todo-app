@@ -7,26 +7,21 @@ interface ITask {
 interface ITaskProps {
   task: ITask.taskName
   isCompleted: ITask.isCompleted
-  id: ITask.id
+  taskID: string
+  listID: string
 }
 
 interface IFilterProps {
   todoList: ITask[]
-  setTodoList: React.Dispatch<React.SetStateAction<ITask[]>>
-  setStatus: React.Dispatch<React.SetStateAction<string>>
-  filteredTodos: ITask[]
-  currentStatus: string
 }
 
-interface ITaskListProps {
-  filteredTodos: ITask[]
-  originalTodos: ITask[]
+interface ITaskListComponent {
+  listID: string
+  todos: ITask[]
 }
 
 interface IFormProps {
-  todoList: ITask[]
-  setTodoList: React.Dispatch<React.SetStateAction<ITask[]>>
-  setFilterStatus: React.Dispatch<React.SetStateAction<string>>
+  list: IListProps
 }
 
 interface IListComponent {
@@ -37,4 +32,5 @@ interface IListProps {
   listID: string
   title: string
   todoList: ITask[]
+  listCount?: number | string
 }

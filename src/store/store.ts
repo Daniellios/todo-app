@@ -1,15 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import dayListReducer from "./dayLIstSlice"
-import todoListReducer from "./todoListSlice"
+import filterReducer from "./fliterSlice"
 
-const rootReducer = combineReducers({
-  list: dayListReducer,
-  todos: todoListReducer,
-})
+// export const rootReducer = combineReducers({
+//   list: dayListReducer,
+//   todos: todoListReducer,
+// })
 
 export const store = configureStore({
   reducer: {
-    rootReducer,
+    list: dayListReducer,
+    filter: filterReducer,
   },
 })
 

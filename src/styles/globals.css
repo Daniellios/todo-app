@@ -10,13 +10,20 @@
 
 @layer components {
   .filter-button {
-    @apply text-paletteWhite px-1 sm:text-lg border-[1px] border-transparent hover:text-paletteTeal rounded transition;
+    @apply text-paletteDark font-bold text-lg md:text-2xl px-1 border-[1px] border-transparent hover:text-paletteDark hover:bg-paletteWhite/90 rounded transition;
   }
   .filter-button-active {
-    @apply text-paletteWhite px-1  sm:text-lg border-[1px] border-transparent rounded bg-paletteTeal transition;
+    @apply text-paletteWhite/90 bg-paletteDark text-lg font-bold md:text-2xl px-1 border-[1px] border-transparent rounded transition;
   }
   .input-error {
     @apply h-full w-full px-4 rounded-t-md rounded-b-md  rounded-r-[0] border-[1px] bg-paletteDark  border-paletteRed outline-none placeholder:text-paletteRed;
+  }
+
+  .task-done {
+    @apply text-lg text-paletteWhite/50 line-through break-words text-start transition;
+  }
+  .task-undone {
+    @apply text-lg text-paletteWhite max-w-[80%] break-words text-start transition;
   }
 }
 
