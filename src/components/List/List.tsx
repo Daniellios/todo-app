@@ -56,7 +56,7 @@ const List = ({ list }: IListComponent) => {
       titleInput.current.focus()
     }
     // saveToLocalStorage()
-  }, [todoList, selectAllLists])
+  }, [todoList])
 
   return (
     <motion.div

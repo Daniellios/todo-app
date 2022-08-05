@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Your To Do's</title>
+        <title>Your To Dos</title>
         <meta name="description" content="Daniil Blinnikov" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
