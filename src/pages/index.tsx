@@ -9,8 +9,6 @@ import { selectAllLists } from "../store/dayLIstSlice"
 const Home: NextPage = () => {
   const lists = useSelector(selectAllLists)
 
-  console.log(lists)
-
   return (
     <>
       <Head>

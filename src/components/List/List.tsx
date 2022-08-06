@@ -21,8 +21,6 @@ const List = ({ list }: IListComponent) => {
   const dispatch = useDispatch()
   const titleInput = useRef<HTMLInputElement>(null)
 
-  const [todoList, setTodoList] = useState<ITask[]>([])
-
   const [title, setTitle] = useState<string>("")
   const [isTitleName, setIsTitleName] = useState<boolean>(false)
 
@@ -44,7 +42,6 @@ const List = ({ list }: IListComponent) => {
   // Local Storage Setup
   const saveToLocalStorage = (): void => {
     if (localStorage.getItem("todoList") === null) {
-      localStorage.setItem("todoList", JSON.stringify(todoList))
     } else {
       const storageList = JSON.parse(localStorage.getItem("todoList") || "{}")
     }
@@ -56,13 +53,14 @@ const List = ({ list }: IListComponent) => {
       titleInput.current.focus()
     }
     // saveToLocalStorage()
-  }, [todoList])
+  }, [])
 
   return (
     <motion.div
       variants={listAnimation}
       initial="hidden"
       animate="visible"
+      layout
       exit={{ size: 0, opacity: 0 }}
       className="flex flex-col w-full h-max gap-6 shadow-lg p-4  bg-paletteDarkGray rounded"
     >
@@ -114,6 +112,7 @@ const List = ({ list }: IListComponent) => {
       {isTitleName ? (
         <>
           <Form list={list} />
+
           <TaskList todos={list.todoList} listID={list.listID} />
           {/* FOOTER */}
           <div className="w-full flex justify-between gap-4 items-center sm:flex-row">

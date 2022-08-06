@@ -87,6 +87,11 @@ export const dayListReducer = createSlice({
         }
       })
     },
+    clearCompleted: (state) => {
+      state.map((list: IListProps) => {
+        list.todoList.filter((task: ITask) => !task.isCompleted)
+      })
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(setAll, (state, action) => {
@@ -119,6 +124,7 @@ export const {
   addTask,
   deleteTask,
   completeTask,
+  clearCompleted,
 } = dayListReducer.actions
 
 export default dayListReducer.reducer
