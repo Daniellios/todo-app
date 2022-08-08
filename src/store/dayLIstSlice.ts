@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction, nanoid, current } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit"
+import { useSelector } from "react-redux"
 import tasksLeft from "../helpers/tasksLeft"
 import { setAll, setActive, setCompleted } from "./fliterSlice"
 import { RootState } from "./store"
@@ -8,7 +9,7 @@ const initialState: IListProps[] = [
     listID: nanoid(),
     title: "",
     todoList: [],
-    listCount: "Nothing to do :)",
+    listCount: "",
     filteredList: [],
   },
 ]
@@ -56,7 +57,7 @@ export const dayListReducer = createSlice({
           }
           list.filteredList.unshift(newTask)
           list.todoList.unshift(newTask)
-          list.listCount = tasksLeft(list.filteredList.length)
+          list.listCount = tasksLeft(list.filteredList)
         }
         return list
       })
@@ -72,7 +73,7 @@ export const dayListReducer = createSlice({
             (task: ITask) => task.id !== action.payload.taskID
           )
           list.filteredList = list.todoList
-          list.listCount = tasksLeft(list.filteredList.length)
+          list.listCount = tasksLeft(list.filteredList)
         }
       })
     },
@@ -88,6 +89,7 @@ export const dayListReducer = createSlice({
             }
           })
           list.filteredList = list.todoList
+          list.listCount = tasksLeft(list.filteredList)
         }
       })
     },
@@ -95,7 +97,7 @@ export const dayListReducer = createSlice({
       state.map((list: IListProps) => {
         list.todoList = list.todoList.filter((task: ITask) => !task.isCompleted)
         list.filteredList = list.todoList
-        list.listCount = tasksLeft(list.filteredList.length)
+        list.listCount = tasksLeft(list.filteredList)
       })
     },
   },

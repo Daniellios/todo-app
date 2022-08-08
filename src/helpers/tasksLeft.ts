@@ -1,15 +1,17 @@
 //Tasks Left Counter
-const tasksLeft = (taskAmount: number): string => {
-  let msg = ""
-  if (taskAmount) {
+const tasksLeft = (tasks: ITask[]): string => {
+  let taskAmount = tasks.filter((task: ITask) => !task.isCompleted).length
+  let msg = " "
+
+  if (tasks) {
     if (taskAmount === 1) {
-      msg = "1 item left"
+      msg = "1 todo left"
       return msg
     } else if (taskAmount > 1) {
-      msg = `${taskAmount} items left`
+      msg = `${taskAmount} todo's left`
       return msg
     } else {
-      msg = "Nothing to do :)"
+      msg = "All done"
       return msg
     }
   }

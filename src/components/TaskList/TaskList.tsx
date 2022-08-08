@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Task from "../Task/Task"
 import { basicOpacityAnimation } from "../../animations/framerConfigs"
+import { useSelector } from "react-redux"
+import { selectFilterStatus } from "../../store/fliterSlice"
 
 const TaskList = ({ todos, listID }: ITaskListComponent) => {
+  const filterStatus = useSelector(selectFilterStatus)
   return (
-    <motion.div className="w-full flex flex-col justify-center items-center gap-3 text-center">
+    <div className="w-full flex flex-col justify-center items-center gap-3 text-center">
       <AnimatePresence>
         {todos.length > 0 ? (
           todos.map((task: ITask) => {
@@ -25,13 +28,19 @@ const TaskList = ({ todos, listID }: ITaskListComponent) => {
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0 }}
-            className="text-2xl text-paletteWhite"
+            className="text-lg tiny:text-2xl text-paletteWhite"
           >
-            Add Something To Do 👆
+            {filterStatus === "all"
+              ? "Click there to add 👆"
+              : filterStatus === "active"
+              ? "No active"
+              : filterStatus === "completed"
+              ? "No completed"
+              : ""}
           </motion.p>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 }
 

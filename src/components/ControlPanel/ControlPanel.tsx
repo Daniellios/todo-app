@@ -14,8 +14,8 @@ const ControlPanel = () => {
   const filterStatus = useSelector(selectFilterStatus)
 
   return (
-    <div className="w-full bg-paletteTeal flex items-center justify-between p-4 max-w-[1980px]">
-      <div className="w-full flex items-center gap-4">
+    <div className="w-full bg-paletteTeal flex justify-center items-center tiny:justify-between p-4 max-w-[1980px]">
+      <div className="w-full tiny:gap-4  flex items-center  justify-start">
         <IoMdAdd
           onClick={() => dispatch(addList())}
           className="flex text-xs items-center justify-center text-paletteDark hover:cursor-pointer hover:text-paletteWhite hover:scale-[.9] transition"
@@ -28,7 +28,7 @@ const ControlPanel = () => {
 
       {/* FILTERS */}
       <div className="w-full flex justify-end gap-4 items-center sm:flex-row">
-        <div className="flex gap-1 md:gap-4 order-2  md:order-none">
+        <div className="flex flex-col tiny:flex-row gap-1 md:gap-4 order-2 md:order-none">
           <button
             onClick={() => dispatch(setAll())}
             className={

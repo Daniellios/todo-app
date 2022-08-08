@@ -13,9 +13,8 @@ export const listAnimation = {
 
 // TASK
 export const taskAnimation = {
-  hidden: { size: 0, opacity: 0 },
+  hidden: { opacity: 0 },
   visible: {
-    size: 1,
     opacity: 1,
     transition: {
       ease: "easeInOut",

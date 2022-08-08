@@ -1,4 +1,3 @@
-import { nanoid } from "@reduxjs/toolkit"
 import React, { useState, useRef, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { addTask } from "../../store/dayLIstSlice"
@@ -8,7 +7,6 @@ const Form = ({ list }: IFormProps) => {
   const dispatch = useDispatch()
 
   const todoInput = useRef<HTMLInputElement>(null)
-
   const [task, setTask] = useState<string>("")
 
   // Task Text Setup
@@ -45,7 +43,7 @@ const Form = ({ list }: IFormProps) => {
       <input
         type="text"
         ref={todoInput}
-        placeholder={error ? "Cannot be empty" : "Add a todo to the list"}
+        placeholder={error ? "Cannot be empty" : "Start typing"}
         className={
           error
             ? "input-error"

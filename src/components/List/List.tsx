@@ -72,57 +72,56 @@ const List = ({ list }: IListComponent) => {
             />
           </>
         ) : (
-          <AnimatePresence>
+          <motion.div
+            variants={titleInputAnimiation}
+            initial="hidden"
+            animate="visible"
+            className="flex justify-center items-center space-x-4"
+          >
+            <input
+              ref={titleInput}
+              onChange={onTitleChange}
+              value={title}
+              type="text "
+              placeholder="Give a name to your list"
+              className="h-8 text-paletteTeal font-semibold bg-paletteDark/50 rounded-md  border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
+            />
             <motion.div
-              variants={titleInputAnimiation}
-              initial="hidden"
-              animate="visible"
-              className="flex justify-center items-center space-x-4"
+              whileHover={{ scale: 1.2 }}
+              whileTap={
+                isTitleName ? { scale: 0.7, opacity: 0 } : { rotate: 10 }
+              }
+              exit={{ opacity: 0 }}
+              className="flex items-center justify-start"
             >
-              <input
-                ref={titleInput}
-                onChange={onTitleChange}
-                value={title}
-                type="text "
-                placeholder="Give a name to your list"
-                className="h-8 text-paletteTeal font-semibold bg-paletteDark/50 rounded-md  border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
+              <AiOutlineCheck
+                onClick={confirmTitle}
+                size={"2rem"}
+                className="text-paletteWhite cursor-pointer hover:text-paletteTeal "
               />
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                whileTap={
-                  isTitleName ? { scale: 0.7, opacity: 0 } : { rotate: 10 }
-                }
-                exit={{ opacity: 0 }}
-                className="flex items-center justify-start"
-              >
-                <AiOutlineCheck
-                  onClick={confirmTitle}
-                  size={"2rem"}
-                  className="text-paletteWhite cursor-pointer hover:text-paletteTeal "
-                />
-              </motion.div>
             </motion.div>
-          </AnimatePresence>
+          </motion.div>
         )}
       </div>
 
       {isTitleName ? (
         <>
           <Form list={list} />
-
           <TaskList todos={list.filteredList} listID={list.listID} />
           {/* FOOTER */}
-          <div className="w-full flex justify-between gap-4 items-center sm:flex-row">
-            <span
-              data-testid="items-counter"
-              className="order-1 text-center  md:order-none md:text-left  md:text-lg text-paletteWhite  md:w-[130px] "
-            >
-              {list.listCount}
-            </span>
-          </div>
+          {list.filteredList.length !== 0 && (
+            <div className="w-full flex justify-between gap-4 items-center sm:flex-row">
+              <span
+                data-testid="items-counter"
+                className="order-1 text-center  md:order-none md:text-left  md:text-lg text-paletteWhite  md:w-[130px] "
+              >
+                {list.listCount}
+              </span>
+            </div>
+          )}
         </>
       ) : (
-        <></>
+        ""
       )}
     </motion.div>
   )
