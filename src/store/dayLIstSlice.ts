@@ -9,6 +9,7 @@ const initialState: IListProps[] = [
     title: "",
     todoList: [],
     listCount: "Nothing to do :)",
+    filteredList: [],
   },
 ]
 
@@ -26,6 +27,7 @@ export const dayListReducer = createSlice({
             listID: nanoid(),
             title: "",
             todoList: [],
+            filteredList: [],
           },
         }
       },
@@ -52,9 +54,9 @@ export const dayListReducer = createSlice({
             isCompleted: false,
             taskName: action.payload.task,
           }
-
+          list.filteredList.unshift(newTask)
           list.todoList.unshift(newTask)
-          list.listCount = tasksLeft(list.todoList.length)
+          list.listCount = tasksLeft(list.filteredList.length)
         }
         return list
       })
@@ -69,7 +71,8 @@ export const dayListReducer = createSlice({
           list.todoList = list.todoList.filter(
             (task: ITask) => task.id !== action.payload.taskID
           )
-          list.listCount = tasksLeft(list.todoList.length)
+          list.filteredList = list.todoList
+          list.listCount = tasksLeft(list.filteredList.length)
         }
       })
     },
@@ -84,31 +87,36 @@ export const dayListReducer = createSlice({
               task.isCompleted = !task.isCompleted
             }
           })
+          list.filteredList = list.todoList
         }
       })
     },
     clearCompleted: (state) => {
       state.map((list: IListProps) => {
-        list.todoList.filter((task: ITask) => !task.isCompleted)
+        list.todoList = list.todoList.filter((task: ITask) => !task.isCompleted)
+        list.filteredList = list.todoList
+        list.listCount = tasksLeft(list.filteredList.length)
       })
     },
   },
   extraReducers: (builder) => {
     builder.addCase(setAll, (state, action) => {
-      const allList = { ...state }
-      state = allList
+      state.map((list: IListProps) => {
+        list.filteredList = list.todoList
+      })
     })
     builder.addCase(setActive, (state, action) => {
-      state.filter((list: IListProps) => {
-        list.todoList = list.todoList.filter((task: ITask) => !task.isCompleted)
+      state.map((list: IListProps) => {
+        list.filteredList = list.todoList.filter(
+          (task: ITask) => !task.isCompleted
+        )
       })
     })
     builder.addCase(setCompleted, (state, action) => {
-      state.filter((list: IListProps) => {
-        const filteredList = list.todoList.filter(
+      state.map((list: IListProps) => {
+        list.filteredList = list.todoList.filter(
           (task: ITask) => task.isCompleted
         )
-        list.todoList = filteredList
       })
     })
   },

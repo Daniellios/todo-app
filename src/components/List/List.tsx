@@ -2,25 +2,22 @@ import React from "react"
 import { useEffect, useRef, useState } from "react"
 import Form from "../Form/Form"
 import TaskList from "../TaskList/TaskList"
-import { AnimatePresence, motion, Reorder } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { ImCross } from "react-icons/im"
-import {
-  deleteList,
-  setListName,
-  selectAllLists,
-} from "../../store/dayLIstSlice"
+import { deleteList, setListName } from "../../store/dayLIstSlice"
 
 import { AiOutlineCheck } from "react-icons/ai"
 import {
   titleInputAnimiation,
   listAnimation,
 } from "../../animations/framerConfigs"
+import { setAll } from "../../store/fliterSlice"
 
 const List = ({ list }: IListComponent) => {
   const dispatch = useDispatch()
   const titleInput = useRef<HTMLInputElement>(null)
-
+  // const filterStatus = useSelector(selectFilterStatus)
   const [title, setTitle] = useState<string>("")
   const [isTitleName, setIsTitleName] = useState<boolean>(false)
 
@@ -113,7 +110,7 @@ const List = ({ list }: IListComponent) => {
         <>
           <Form list={list} />
 
-          <TaskList todos={list.todoList} listID={list.listID} />
+          <TaskList todos={list.filteredList} listID={list.listID} />
           {/* FOOTER */}
           <div className="w-full flex justify-between gap-4 items-center sm:flex-row">
             <span

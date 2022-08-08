@@ -33,4 +33,5 @@ interface IListProps {
   title: string
   todoList: ITask[]
   listCount?: number | string
+  filteredList: ITask[]
 }
