@@ -1,28 +1,28 @@
-import React from "react"
-import { useEffect, useRef, useState } from "react"
-import Form from "../Form/Form"
-import TaskList from "../TaskList/TaskList"
-import { AnimatePresence, motion } from "framer-motion"
-import { useDispatch, useSelector } from "react-redux"
-import { ImCross } from "react-icons/im"
-import { deleteList, setListName } from "../../store/dayLIstSlice"
+import React from "react";
+import { useEffect, useRef, useState } from "react";
+import Form from "../Form/Form";
+import TaskList from "../TaskList/TaskList";
+import { AnimatePresence, motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { ImCross } from "react-icons/im";
+import { deleteList, setListName } from "../../store/dayLIstSlice";
 
-import { AiOutlineCheck } from "react-icons/ai"
+import { AiOutlineCheck } from "react-icons/ai";
 import {
   titleInputAnimiation,
   listAnimation,
-} from "../../animations/framerConfigs"
-import { setAll } from "../../store/fliterSlice"
+} from "../../animations/framerConfigs";
+import { setAll } from "../../store/fliterSlice";
 
 const List = ({ list }: IListComponent) => {
-  const dispatch = useDispatch()
-  const titleInput = useRef<HTMLInputElement>(null)
+  const dispatch = useDispatch();
+  const titleInput = useRef<HTMLInputElement>(null);
   // const filterStatus = useSelector(selectFilterStatus)
-  const [title, setTitle] = useState<string>("")
-  const [isTitleName, setIsTitleName] = useState<boolean>(false)
+  const [title, setTitle] = useState<string>("");
+  const [isTitleName, setIsTitleName] = useState<boolean>(false);
 
   const onTitleChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
-    setTitle(e.currentTarget.value)
+    setTitle(e.currentTarget.value);
 
   const confirmTitle = (): void => {
     if (title) {
@@ -31,26 +31,26 @@ const List = ({ list }: IListComponent) => {
           ...list,
           title,
         })
-      )
-      setIsTitleName(true)
+      );
+      setIsTitleName(true);
     }
-  }
+  };
 
   // Local Storage Setup
   const saveToLocalStorage = (): void => {
     if (localStorage.getItem("todoList") === null) {
     } else {
-      const storageList = JSON.parse(localStorage.getItem("todoList") || "{}")
+      const storageList = JSON.parse(localStorage.getItem("todoList") || "{}");
     }
-  }
+  };
 
   // Update Filtered List
   useEffect(() => {
     if (null !== titleInput.current) {
-      titleInput.current.focus()
+      titleInput.current.focus();
     }
     // saveToLocalStorage()
-  }, [])
+  }, []);
 
   return (
     <motion.div
@@ -125,7 +125,7 @@ const List = ({ list }: IListComponent) => {
         <></>
       )}
     </motion.div>
-  )
-}
+  );
+};
 
-export default List
+export default List;
