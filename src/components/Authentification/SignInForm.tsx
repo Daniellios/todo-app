@@ -8,23 +8,23 @@ const SignInForm = () => {
 
   const handleLogin = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    if (!email) return;
 
-    if (email) {
-      try {
-        setLoading(true);
-        const { error } = await supabase.auth.signInWithOtp({ email });
-        if (error) throw error;
-        alert("Check your email for the login link!");
-      } catch (error) {
-        alert(error);
-      } finally {
-        setLoading(false);
+    try {
+      setLoading(true);
+      const { error, data } = await supabase.auth.signInWithOtp({ email });
+      alert("Check your email for the login link!");
+    } catch (error) {
+      if (error) {
+        setIsInputError(true);
+        setTimeout(() => {
+          setIsInputError(false);
+        }, 1500);
+        throw error;
       }
-    } else {
-      setIsInputError(true);
-      setTimeout(() => {
-        setIsInputError(false);
-      }, 1500);
+      alert(error);
+    } finally {
+      setLoading(false);
     }
   };
 

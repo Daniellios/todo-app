@@ -12,12 +12,10 @@ import {
   titleInputAnimiation,
   listAnimation,
 } from "../../animations/framerConfigs";
-import { setAll } from "../../store/fliterSlice";
 
-const List = ({ list }: IListComponent) => {
+const TaskCard = ({ list }: IListComponent) => {
   const dispatch = useDispatch();
   const titleInput = useRef<HTMLInputElement>(null);
-  // const filterStatus = useSelector(selectFilterStatus)
   const [title, setTitle] = useState<string>("");
   const [isTitleName, setIsTitleName] = useState<boolean>(false);
 
@@ -36,20 +34,15 @@ const List = ({ list }: IListComponent) => {
     }
   };
 
-  // Local Storage Setup
-  const saveToLocalStorage = (): void => {
-    if (localStorage.getItem("todoList") === null) {
-    } else {
-      const storageList = JSON.parse(localStorage.getItem("todoList") || "{}");
-    }
+  const handleDeleteTaskCard = () => {
+    dispatch(deleteList(list.listID));
   };
 
-  // Update Filtered List
+  // Update Filtered TaskCard
   useEffect(() => {
     if (null !== titleInput.current) {
       titleInput.current.focus();
     }
-    // saveToLocalStorage()
   }, []);
 
   return (
@@ -64,13 +57,7 @@ const List = ({ list }: IListComponent) => {
       {/* Header */}
       <div className="w-full flex items-center justify-center relative">
         {isTitleName ? (
-          <>
-            <h2 className="text-paletteTeal text-3xl  uppercase">{title}</h2>
-            <ImCross
-              onClick={() => dispatch(deleteList(list.listID))}
-              className="absolute top-0 right-0 text-paletteWhite hover:text-paletteTeal hover:rotate-90 cursor-pointer transition"
-            />
-          </>
+          <h2 className="text-paletteTeal text-3xl uppercase">{title}</h2>
         ) : (
           <AnimatePresence>
             <motion.div
@@ -104,6 +91,10 @@ const List = ({ list }: IListComponent) => {
             </motion.div>
           </AnimatePresence>
         )}
+        <ImCross
+          onClick={handleDeleteTaskCard}
+          className="absolute top-0 right-0 text-paletteWhite hover:text-paletteRed hover:rotate-90 cursor-pointer transition"
+        />
       </div>
 
       {isTitleName ? (
@@ -128,4 +119,4 @@ const List = ({ list }: IListComponent) => {
   );
 };
 
-export default List;
+export default TaskCard;

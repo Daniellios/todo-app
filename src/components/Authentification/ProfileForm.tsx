@@ -1,4 +1,5 @@
-import { Session } from "@supabase/supabase-js";
+import { AuthSession } from "@supabase/supabase-js";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { supabase } from "../../utils/supabaseClient";
 
@@ -9,7 +10,7 @@ interface IProfile {
 }
 
 type Account = {
-  session: Session;
+  session: AuthSession;
 };
 
 const ProfileForm = ({ session }: Account) => {
@@ -18,8 +19,10 @@ const ProfileForm = ({ session }: Account) => {
   const [website, setWebsite] = useState<string>("");
   const [avatar_url, setAvatarUrl] = useState<string>("");
 
+  const router = useRouter();
+
   useEffect(() => {
-    getProfile();
+    // getProfile();
   }, [session]);
 
   const getCurrentUser = async () => {
@@ -55,12 +58,12 @@ const ProfileForm = ({ session }: Account) => {
       }
 
       if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
+        setUsername(data?.username);
+        setWebsite(data?.website);
+        setAvatarUrl(data?.avatar_url);
       }
     } catch (error) {
-      alert(error);
+      alert("HERE" + error);
     } finally {
       setLoading(false);
     }
@@ -95,8 +98,17 @@ const ProfileForm = ({ session }: Account) => {
     setUsername(e.currentTarget.value);
   };
 
+  const handleWebSiteChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setWebsite(e.currentTarget.value);
+  };
+
+  const handleUpdateProfileInfo = () => {
+    updateProfile({ username, website, avatar_url });
+  };
+
   const handleSignOut = () => {
     supabase.auth.signOut();
+    router.push("/signin");
   };
 
   return (
@@ -120,14 +132,14 @@ const ProfileForm = ({ session }: Account) => {
           id="website"
           type="website"
           value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
+          onChange={handleWebSiteChange}
         />
       </div>
 
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={handleUpdateProfileInfo}
           disabled={loading}
         >
           {loading ? "Loading ..." : "Update"}

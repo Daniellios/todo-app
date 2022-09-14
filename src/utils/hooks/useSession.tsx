@@ -1,24 +1,30 @@
-import { AuthSession, Session } from "@supabase/supabase-js";
+import { AuthSession } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 
 export const useSession = () => {
-  const [session, setSession] = useState<Session | null>();
+  const [session, setSession] = useState<AuthSession | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    const sessionData = supabase.auth
+  const fetchSessionData = async () => {
+    supabase.auth
       .getSession()
       .then((res) => {
+        console.log(res);
+        setSession(res.data.session);
+        setIsLoading(false);
         return res.data.session;
       })
       .catch((err) => console.log(err));
-    // console.log(supabase.auth.session());
+  };
 
+  useEffect(() => {
+    fetchSessionData();
     setSession(null);
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
   }, []);
 
-  return session;
+  return { session, isLoading };
 };

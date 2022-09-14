@@ -11,17 +11,24 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  name      String?
+  taskCards TaskCard[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model TaskCard {
+  id       String @id @default(uuid())
+  title    String @unique
+  taskList Task[]
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId Int
+}
+
+model Task {
+  id          String    @id @default(uuid())
+  title       String
+  isCompleted Boolean
+  TaskCard    TaskCard? @relation(fields: [taskCardId], references: [id])
+  taskCardId  String?
 }
