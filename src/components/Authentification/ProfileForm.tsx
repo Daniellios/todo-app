@@ -10,7 +10,7 @@ interface IProfile {
 }
 
 type Account = {
-  session: AuthSession;
+  session?: AuthSession;
 };
 
 const ProfileForm = ({ session }: Account) => {
@@ -48,8 +48,8 @@ const ProfileForm = ({ session }: Account) => {
       const user = await getCurrentUser();
 
       let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
+        .from("users")
+        .select(`username`)
         .eq("id", user.id)
         .single();
 
@@ -59,8 +59,6 @@ const ProfileForm = ({ session }: Account) => {
 
       if (data) {
         setUsername(data?.username);
-        setWebsite(data?.website);
-        setAvatarUrl(data?.avatar_url);
       }
     } catch (error) {
       alert("HERE" + error);
@@ -69,7 +67,7 @@ const ProfileForm = ({ session }: Account) => {
     }
   };
 
-  const updateProfile = async ({ username, website, avatar_url }: IProfile) => {
+  const updateProfile = async ({ username }: IProfile) => {
     try {
       setLoading(true);
       const user = await getCurrentUser();
@@ -77,8 +75,6 @@ const ProfileForm = ({ session }: Account) => {
       const updates = {
         id: user.id,
         username,
-        website,
-        avatar_url,
         updated_at: new Date(),
       };
 
@@ -115,10 +111,10 @@ const ProfileForm = ({ session }: Account) => {
     <div className="flex flex-col">
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input id="email" type="text" value={session?.user.email} disabled />
       </div>
       <div>
-        <label htmlFor="username">SFASFASFASFSAF</label>
+        <label htmlFor="username">User name</label>
         <input
           id="username"
           type="text"

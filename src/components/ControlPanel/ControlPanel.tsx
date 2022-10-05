@@ -47,73 +47,82 @@ const ControlPanel = () => {
   };
 
   return (
-    <div className="w-full bg-paletteTeal flex items-center justify-between p-4 max-w-[1980px] h-24">
-      <div className="flex items-center ">
-        <button onClick={hanldeAddNewList} className="regular-button">
-          <IoMdAdd className=" text-paletteDark" size={"1.5rem"}></IoMdAdd>
-          Add List
-        </button>
-      </div>
-
-      {/* FILTERS */}
-      <div className="w-full flex justify-center gap-4 items-center sm:flex-row">
-        <div className="flex gap-1 md:gap-4 order-2  md:order-none">
-          <button
-            onClick={handleSetAllFilter}
-            className={
-              filterStatus === "all" ? "filter-button-active" : "filter-button"
-            }
-          >
-            All
-          </button>
-          <button
-            onClick={handleSetActiveFilter}
-            className={
-              filterStatus === "active"
-                ? "filter-button-active"
-                : "filter-button"
-            }
-          >
-            Active
-          </button>
-          <button
-            onClick={handleSetCompletedFilter}
-            className={
-              filterStatus === "completed"
-                ? "filter-button-active"
-                : "filter-button"
-            }
-          >
-            Completed
+    <div className="w-full bg-paletteTeal flex items-center justify-center p-4 h-24">
+      <div className="flex w-full items-center justify-between max-w-[1980px]">
+        <div className="flex items-center">
+          <button onClick={hanldeAddNewList} className="regular-button">
+            <IoMdAdd className=" text-paletteDark" size={"1.5rem"}></IoMdAdd>
+            Add List
           </button>
         </div>
-        <button
-          onClick={handleClearCompletedTasks}
-          className="filter-button order-3  md:order-none"
-        >
-          Clear Completed
-        </button>
-      </div>
 
-      {/* PROFILE */}
-      <div className="flex gap-8">
-        {session?.user ? (
-          <>
-            <h1 className="text-xl font-bold">
-              {session.user.id.substring(0, 4)}
-            </h1>
+        {/* FILTERS */}
+        <div className="w-full flex justify-center gap-4 items-center sm:flex-row">
+          <div className="flex gap-1 md:gap-4 order-2  md:order-none">
+            <button>ТЕСТИМ</button>
+
             <button
-              className="regular-button uppercase"
-              onClick={handleSignOut}
+              onClick={handleSetAllFilter}
+              className={
+                filterStatus === "all"
+                  ? "filter-button-active"
+                  : "filter-button"
+              }
             >
-              Sign out
+              All
             </button>
-          </>
-        ) : (
-          <button className="regular-button uppercase " onClick={handleSignIn}>
-            Sign In
+            <button
+              onClick={handleSetActiveFilter}
+              className={
+                filterStatus === "active"
+                  ? "filter-button-active"
+                  : "filter-button"
+              }
+            >
+              Active
+            </button>
+            <button
+              onClick={handleSetCompletedFilter}
+              className={
+                filterStatus === "completed"
+                  ? "filter-button-active"
+                  : "filter-button"
+              }
+            >
+              Completed
+            </button>
+          </div>
+          <button
+            onClick={handleClearCompletedTasks}
+            className="filter-button order-3  md:order-none"
+          >
+            Clear Completed
           </button>
-        )}
+        </div>
+
+        {/* PROFILE */}
+        <div className="flex gap-8">
+          {session?.user ? (
+            <>
+              <h1 className="text-xl font-bold">
+                {session.user.id.substring(0, 4)}
+              </h1>
+              <button
+                className="regular-button uppercase"
+                onClick={handleSignOut}
+              >
+                Sign out
+              </button>
+            </>
+          ) : (
+            <button
+              className="regular-button uppercase "
+              onClick={handleSignIn}
+            >
+              Sign In
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -7,10 +7,10 @@ export const useSession = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchSessionData = async () => {
-    supabase.auth
+    await supabase.auth
       .getSession()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSession(res.data.session);
         setIsLoading(false);
         return res.data.session;

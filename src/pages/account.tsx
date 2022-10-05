@@ -5,9 +5,10 @@ import { useSession } from "../utils/hooks/useSession";
 
 const Account = () => {
   const { session, isLoading } = useSession();
-  if (!session) return null;
 
-  return <ProfileForm session={session}></ProfileForm>;
+  // if (!session) return null;
+
+  return <ProfileForm session={session || undefined}></ProfileForm>;
 };
 
 export default Account;

@@ -4,7 +4,10 @@
 
 @layer base {
   body {
-    @apply bg-paletteDark transition-none selection:bg-paletteTeal;
+    @apply bg-paletteDark transition-none selection:bg-paletteTeal min-w-[320px] w-full h-screen;
+  }
+  #__next {
+    @apply w-full h-full flex items-center;
   }
 }
 

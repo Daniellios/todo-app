@@ -4,7 +4,7 @@ import SignInForm from "../components/Authentification/SignInForm";
 import { useSession } from "../utils/hooks/useSession";
 
 const Signin = () => {
-  const session = useSession();
+  const { session, isLoading } = useSession();
   const router = useRouter();
 
   useEffect(() => {
