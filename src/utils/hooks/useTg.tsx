@@ -6,10 +6,9 @@ export const useTg = () => {
   useEffect(() => {
     // @ts-ignore
     const tg = window.Telegram.WebApp;
+    tg.ready();
     setWebApp(tg);
   }, []);
-
-  webApp.ready();
 
   return webApp;
 };
