@@ -9,22 +9,11 @@ import {
   setAll,
   setCompleted,
 } from "../../store/fliterSlice";
-import { useSession } from "../../utils/hooks/useSession";
-import { supabase } from "../../utils/supabaseClient";
 
 const ControlPanel = () => {
   const dispatch = useDispatch();
   const filterStatus = useSelector(selectFilterStatus);
-  const { session, isLoading } = useSession();
   const router = useRouter();
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-  };
-
-  const handleSignIn = () => {
-    router.push("/signin");
-  };
 
   const hanldeAddNewList = () => {
     dispatch(addList());
@@ -98,30 +87,6 @@ const ControlPanel = () => {
           >
             Clear Completed
           </button>
-        </div>
-
-        {/* PROFILE */}
-        <div className="flex gap-8">
-          {session?.user ? (
-            <>
-              <h1 className="text-xl font-bold">
-                {session.user.id.substring(0, 4)}
-              </h1>
-              <button
-                className="regular-button uppercase"
-                onClick={handleSignOut}
-              >
-                Sign out
-              </button>
-            </>
-          ) : (
-            <button
-              className="regular-button uppercase "
-              onClick={handleSignIn}
-            >
-              Sign In
-            </button>
-          )}
         </div>
       </div>
     </div>
