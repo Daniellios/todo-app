@@ -1,20 +1,20 @@
-import React, { useState } from "react"
-import { AiOutlineCheck } from "react-icons/ai"
-import { AnimatePresence, motion } from "framer-motion"
-import { BsFillTrashFill } from "react-icons/bs"
-import { useDispatch, useSelector } from "react-redux"
-import { taskAnimation } from "../../animations/framerConfigs"
-import { deleteTask, completeTask } from "../../store/dayLIstSlice"
+import React, { useState } from "react";
+import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
+import { AnimatePresence, motion } from "framer-motion";
+import { BsFillTrashFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { taskAnimation } from "../../animations/framerConfigs";
+import { deleteTask, completeTask } from "../../store/dayListSlice";
 
 const Task = ({ task, isCompleted, taskID, listID }: ITaskProps) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [isDone, setIsDone] = useState(isCompleted)
+  const [isDone, setIsDone] = useState(isCompleted);
 
   const handleDone = (): void => {
-    dispatch(completeTask({ ID: listID, taskID: taskID }))
-    setIsDone(!isDone)
-  }
+    dispatch(completeTask({ ID: listID, taskID: taskID }));
+    setIsDone(!isDone);
+  };
 
   return (
     <motion.div
@@ -24,26 +24,22 @@ const Task = ({ task, isCompleted, taskID, listID }: ITaskProps) => {
       exit={{ opacity: 0 }}
       className="w-full  border-b-[1px] border-gray-500/25 "
     >
-      <div className="flex items-center justify-start gap-4 py-2 pr-4">
-        <motion.button
-          onClick={handleDone}
-          className="flex justify-center items-center w-8 h-8 rounded-full border-[1px] border-paletteWhite/70 hover:cursor-pointer hover:bg-slate-500/25"
-        >
-          {isDone ? (
-            <AiOutlineCheck className="text-paletteTeal" size={"1.5rem"} />
-          ) : (
-            ""
-          )}
-        </motion.button>
-        <h2 className={isDone ? "task-done" : "task-undone"}>{task}</h2>
+      <div className="flex items-center justify-between gap-4 px-4 py-2 h-full bg-paletteDarkGray rounded">
+        <h2 className="text-lg text-paletteWhite  break-words text-start transition capitalize font-semibold">
+          {task}
+        </h2>
 
-        <BsFillTrashFill
-          onClick={() => dispatch(deleteTask({ ID: listID, taskID: taskID }))}
-          className="text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition "
-        />
+        <div className="flex gap-4 justify-start items-center">
+          <AiFillEdit className="text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition"></AiFillEdit>
+
+          <BsFillTrashFill
+            onClick={() => dispatch(deleteTask({ ID: listID, taskID: taskID }))}
+            className="text-paletteWhite flex ml-auto hover:text-paletteRed cursor-pointer transition"
+          />
+        </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Task
+export default Task;
