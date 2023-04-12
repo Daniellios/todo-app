@@ -39,6 +39,17 @@ export const dayListReducer = createSlice({
         return list;
       });
     },
+    editListName: (state, action: PayloadAction<IBoardListProps>) => {
+      return state.map((list: IBoardListProps) => {
+        if (action.payload.listID === list.listID) {
+          return {
+            ...list,
+            ...action.payload,
+          };
+        }
+        return list;
+      });
+    },
     addTask: (state, action: PayloadAction<{ ID: string; task: string }>) => {
       state.map((list: IBoardListProps) => {
         if (list.listID === action.payload.ID) {
@@ -142,6 +153,7 @@ export const selectAllLists = (state: RootState) => state.list;
 export const {
   addBoard,
   deleteList,
+  editListName,
   setListName,
   addTask,
   editTask,

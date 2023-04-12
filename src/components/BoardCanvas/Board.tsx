@@ -5,9 +5,13 @@ import TaskList from "../BoardTaskList/TaskList";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { ImCross } from "react-icons/im";
-import { deleteList, setListName } from "../../store/dayListSlice";
+import {
+  deleteList,
+  editListName,
+  setListName,
+} from "../../store/dayListSlice";
 
-import { AiOutlineCheck } from "react-icons/ai";
+import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import {
   titleInputAnimiation,
   listAnimation,
@@ -15,6 +19,10 @@ import {
 import BoardTaskList from "../BoardTaskList/TaskList";
 
 const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const [error, setError] = useState<boolean>(false);
+
   const dispatch = useDispatch();
 
   const titleInput = useRef<HTMLInputElement>(null);
@@ -24,6 +32,40 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
   const [boardTitleName, setBoardTitleName] = useState<string | undefined>(
     list.title
   );
+
+  const toggleEdit = (): void => {
+    setIsEditing(true);
+  };
+
+  const showError = (): void => {
+    setError(true);
+    setTimeout(() => {
+      setError(false);
+    }, 1500);
+  };
+
+  const applyEditChanges = (): void => {
+    console.log("TITL - ", title);
+
+    if (!title) showError();
+    else {
+      dispatch(
+        dispatch(
+          editListName({
+            ...list,
+            title,
+          })
+        )
+      );
+
+      setBoardTitleName(title);
+      setIsEditing(false);
+    }
+  };
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    setBoardTitleName(e.currentTarget.value);
+  };
 
   const onTitleChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
     setTitle(e.currentTarget.value);
@@ -65,9 +107,9 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
         className={`w-full flex items-center justify-center bg-paletteDarkGray  text-paletteWhite relative p-4 rounded`}
         // style={{ background: list.color }}
       >
-        {boardTitleName ? (
-          <h2 className="text-3xl uppercase">{list.title}</h2>
-        ) : (
+        {!isEditing && <h2 className="text-3xl uppercase">{list.title}</h2>}
+
+        {isEditing && (
           <AnimatePresence>
             <motion.div
               variants={titleInputAnimiation}
@@ -80,9 +122,16 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 onChange={onTitleChange}
                 value={title}
                 type="text "
-                placeholder="Give a name to your board"
-                className="h-8 text-paletteTeal font-semibold capitalize bg-paletteDark/50 rounded-sm  border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
+                placeholder={
+                  error ? "Incorrect board name" : ` Give a name to your board`
+                }
+                className={
+                  error
+                    ? "h-8 text-paletteTeal font-semibold bg-paletteDark/50 rounded-sm border-[1px] placeholder:text-paletteWhite/70 px-4 focus:outline-none border-paletteRed outline-none placeholder:text-paletteRed"
+                    : "h-8 text-paletteTeal font-semibold  capitalize bg-paletteDark/50 rounded-sm border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
+                }
               />
+
               <motion.div
                 whileHover={{ scale: 1.2 }}
                 whileTap={
@@ -92,18 +141,29 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 className="flex items-center justify-start"
               >
                 <AiOutlineCheck
-                  onClick={confirmTitle}
-                  size={"2rem"}
+                  onClick={applyEditChanges}
+                  size={"1.5rem"}
                   className="text-paletteWhite cursor-pointer hover:text-paletteTeal "
                 />
               </motion.div>
             </motion.div>
           </AnimatePresence>
         )}
-        <ImCross
-          onClick={handleDeleteTaskCard}
-          className="absolute top-2 right-4 text-paletteWhite hover:text-paletteRed hover:rotate-90 cursor-pointer transition"
-        />
+
+        <div className="flex items-center gap-2 absolute top-2 right-4">
+          {!isEditing && (
+            <AiFillEdit
+              size={"1.2rem"}
+              onClick={toggleEdit}
+              className=" text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition"
+            ></AiFillEdit>
+          )}
+
+          <ImCross
+            onClick={handleDeleteTaskCard}
+            className=" text-paletteWhite hover:text-paletteRed hover:rotate-90 cursor-pointer transition"
+          />
+        </div>
       </div>
 
       {boardTitleName && (

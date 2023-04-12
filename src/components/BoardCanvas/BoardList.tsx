@@ -10,7 +10,7 @@ const BoardsList = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="w-full flex flex-row gap-8 p-4">
+    <div className="w-full grid tiny: grid-cols-daysListTiny  xl:grid-cols-daysListXl gap-8 p-4">
       <AnimatePresence>
         {boards.map((list: IBoardListProps) => (
           <BoardTaskCard key={list.listID} list={list} />

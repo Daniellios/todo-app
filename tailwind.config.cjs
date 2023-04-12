@@ -13,11 +13,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Simple 16 column grid
-        daysListXl:
-          "repeat(auto-fit, minmax(calc(50% - 4rem), calc(50% - 4rem)))",
+        daysListXl: "repeat(3, 1fr)",
         daysListMd: "repeat(1, calc(86% - 4rem))",
         daysListSm: "repeat(1, calc(100% - 4rem))",
-        daysListTiny: "repeat(1, calc(100% ))",
+        daysListTiny: "repeat(1, calc(100%))",
       },
       screens: {
         tiny: "475px",
