@@ -5,18 +5,25 @@ import Header from "../components/ControlPanel/ControlPanel";
 import BoardsList from "../components/BoardCanvas/BoardList";
 import Script from "next/script";
 import BoardModalCreator from "../components/BoardModalCreator";
+import { useSelector } from "react-redux";
+import { selectModalStatus } from "../store/uiSlice";
 
 export const metadata = {
   title: "Kanban",
 };
 
 const Home: NextPage = () => {
+  const isOpen = useSelector(selectModalStatus);
+
   return (
     <>
       <Head>
         <meta name="description" content="Daniil Blinnikov" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {isOpen && <div className="overlay"></div>}
+
       <main className="mx-auto flex flex-col items-center justify-start h-screen w-screen overflow-x-hidden scrollbar">
         <Header />
 
