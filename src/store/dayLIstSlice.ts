@@ -12,11 +12,11 @@ export const dayListReducer = createSlice({
       reducer(state, action: PayloadAction<IBoardListProps>) {
         state.push(action.payload);
       },
-      prepare() {
+      prepare(boardName: string) {
         return {
           payload: {
             listID: nanoid(),
-            title: "",
+            title: boardName,
             todoList: [],
             filteredList: [],
           },

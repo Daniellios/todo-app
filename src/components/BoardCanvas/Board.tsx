@@ -5,11 +5,6 @@ import TaskList from "../BoardTaskList/TaskList";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { ImCross } from "react-icons/im";
-import {
-  deleteList,
-  editListName,
-  setListName,
-} from "../../store/dayListSlice";
 
 import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import {
@@ -17,6 +12,7 @@ import {
   listAnimation,
 } from "../../animations/framerConfigs";
 import BoardTaskList from "../BoardTaskList/TaskList";
+import { deleteList, editListName } from "../../store/dayListSlice";
 
 const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);

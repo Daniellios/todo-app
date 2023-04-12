@@ -3,16 +3,23 @@ import { useForm } from "react-hook-form";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import useOnClickOutside from "../hooks/useClickOutside";
-import { addBoard, setListName } from "../store/dayListSlice";
+import { addBoard, selectAllLists, setListName } from "../store/dayListSlice";
 import { closeModal, selectModalStatus } from "../store/uiSlice";
+
+type Inputs = {
+  boardName: string;
+};
 
 const BoardModalCreator: React.FC = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<Inputs>();
+
+  const boards = useSelector(selectAllLists);
 
   const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");
@@ -27,17 +34,16 @@ const BoardModalCreator: React.FC = () => {
     setBoardTitleName(e.currentTarget.value);
   };
 
-  //   const confirmTitle = (): void => {
-  //     if (title) {
-  //       dispatch(
-  //         setListName({
-  //           ...list,
-  //           title,
-  //         })
-  //       );
-  //       setBoardTitleName(list.title);
-  //     }
-  //   };
+  // const confirmTitle = (): void => {
+  //   if (title) {
+  //     dispatch(
+  //       setListName({
+  //         ...boards,
+  //       })
+  //     );
+  //     setBoardTitleName(list.title);
+  //   }
+  // };
 
   const handleCloseModal = (): void => {
     dispatch(closeModal());
@@ -48,7 +54,9 @@ const BoardModalCreator: React.FC = () => {
   };
 
   const handleAddBoard = () => {
-    dispatch(addBoard());
+    const formValues = getValues();
+
+    dispatch(addBoard(formValues.boardName));
   };
 
   useOnClickOutside(modalRef, handleClickOutside);
@@ -75,11 +83,11 @@ const BoardModalCreator: React.FC = () => {
             placeholder="Done"
             defaultValue={""}
             className="h-10"
-            {...register("example")}
+            {...register("boardName")}
           />
 
           {/* errors will return when field validation fails  */}
-          {errors.exampleRequired && <span>This field is required</span>}
+          {errors.boardName && <span>This field is required</span>}
 
           <button
             type="submit"
