@@ -127,8 +127,8 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 }
                 className={
                   error
-                    ? "h-8 text-paletteTeal font-semibold bg-paletteDark/50 rounded-sm border-[1px] placeholder:text-paletteWhite/70 px-4 focus:outline-none border-paletteRed outline-none placeholder:text-paletteRed"
-                    : "h-8 text-paletteTeal font-semibold  capitalize bg-paletteDark/50 rounded-sm border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
+                    ? "border-[1px]  border-paletteRed outline-none placeholder:text-paletteRed"
+                    : "capitalize border-none"
                 }
               />
 
