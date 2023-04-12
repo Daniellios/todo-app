@@ -1,7 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addTask } from "../../store/dayListSlice";
+import { addTask } from "../../store/boardsSlice";
 
 const Form = ({ list }: IFormProps) => {
   const [error, setError] = useState<boolean>(false);

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { taskAnimation } from "../../animations/framerConfigs";
-import { deleteTask, completeTask, editTask } from "../../store/dayListSlice";
+import { deleteTask, completeTask, editTask } from "../../store/boardsSlice";
 import { IoMdAdd } from "react-icons/io";
 
 const Task = ({ taskName, isCompleted, id, listID }: ITaskProps) => {

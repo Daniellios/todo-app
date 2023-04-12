@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdAdd } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { addBoard, clearCompleted } from "../../store/dayListSlice";
+import { addBoard, clearCompleted } from "../../store/boardsSlice";
 import { openModal, toggleModal } from "../../store/uiSlice";
 
 const ControlPanel = () => {

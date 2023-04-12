@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import dayListReducer from "./dayListSlice";
+import boardListReducer from "./boardsSlice";
 import filterReducer from "./fliterSlice";
 import uiReducer from "./uiSlice";
 
@@ -10,7 +10,7 @@ import uiReducer from "./uiSlice";
 
 export const store = configureStore({
   reducer: {
-    list: dayListReducer,
+    boards: boardListReducer,
     filter: filterReducer,
     ui: uiReducer,
   },

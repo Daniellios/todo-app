@@ -12,7 +12,7 @@ import {
   listAnimation,
 } from "../../animations/framerConfigs";
 import BoardTaskList from "../BoardTaskList/TaskList";
-import { deleteList, editListName } from "../../store/dayListSlice";
+import { deleteBoard, editListName } from "../../store/boardsSlice";
 
 const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -79,7 +79,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
   // };
 
   const handleDeleteTaskCard = () => {
-    dispatch(deleteList(list.listID));
+    dispatch(deleteBoard(list.listID));
   };
 
   // Update Filtered TaskCard

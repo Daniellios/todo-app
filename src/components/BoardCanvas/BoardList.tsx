@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
 import { useSelector } from "react-redux";
-import { selectAllLists } from "../../store/dayListSlice";
+import { selectAllBoards } from "../../store/boardsSlice";
 import BoardTaskCard from "./Board";
 
 const BoardsList = () => {
-  const boards = useSelector(selectAllLists);
+  const boards = useSelector(selectAllBoards);
 
   useEffect(() => {}, []);
 

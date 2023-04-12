@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import useOnClickOutside from "../hooks/useClickOutside";
-import { addBoard, selectAllLists, setListName } from "../store/dayListSlice";
+import { addBoard, selectAllBoards, setListName } from "../store/boardsSlice";
 import { closeModal, selectModalStatus } from "../store/uiSlice";
 
 type Inputs = {
@@ -19,7 +19,7 @@ const BoardModalCreator: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const boards = useSelector(selectAllLists);
+  const boards = useSelector(selectAllBoards);
 
   const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");

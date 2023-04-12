@@ -23,7 +23,7 @@ export const dayListReducer = createSlice({
         };
       },
     },
-    deleteList: (state, action: PayloadAction<string>) => {
+    deleteBoard: (state, action: PayloadAction<string>) => {
       return state.filter(
         (list: IBoardListProps) => action.payload !== list.listID
       );
@@ -149,11 +149,11 @@ export const dayListReducer = createSlice({
   },
 });
 
-export const selectAllLists = (state: RootState) => state.list;
+export const selectAllBoards = (state: RootState) => state.boards;
 
 export const {
   addBoard,
-  deleteList,
+  deleteBoard,
   editListName,
   setListName,
   addTask,
