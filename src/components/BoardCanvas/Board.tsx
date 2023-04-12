@@ -63,24 +63,24 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
     }
   };
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    setBoardTitleName(e.currentTarget.value);
-  };
+  // const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+  //   setBoardTitleName(e.currentTarget.value);
+  // };
 
   const onTitleChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
     setTitle(e.currentTarget.value);
 
-  const confirmTitle = (): void => {
-    if (title) {
-      dispatch(
-        setListName({
-          ...list,
-          title,
-        })
-      );
-      setBoardTitleName(list.title);
-    }
-  };
+  // const confirmTitle = (): void => {
+  //   if (title) {
+  //     dispatch(
+  //       setListName({
+  //         ...list,
+  //         title,
+  //       })
+  //     );
+  //     setBoardTitleName(list.title);
+  //   }
+  // };
 
   const handleDeleteTaskCard = () => {
     dispatch(deleteList(list.listID));

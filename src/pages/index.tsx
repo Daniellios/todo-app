@@ -2,8 +2,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Header from "../components/ControlPanel/ControlPanel";
 
-import TaskCardList from "../components/BoardCanvas/BoardList";
+import BoardsList from "../components/BoardCanvas/BoardList";
 import Script from "next/script";
+import BoardModalCreator from "../components/BoardModalCreator";
 
 export const metadata = {
   title: "Kanban",
@@ -21,7 +22,9 @@ const Home: NextPage = () => {
 
         <Script></Script>
 
-        <TaskCardList></TaskCardList>
+        <BoardModalCreator></BoardModalCreator>
+
+        <BoardsList></BoardsList>
       </main>
     </>
   );

@@ -2,12 +2,13 @@ import React from "react";
 import { IoMdAdd } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { addBoard, clearCompleted } from "../../store/dayListSlice";
+import { openModal, toggleModal } from "../../store/uiSlice";
 
 const ControlPanel = () => {
   const dispatch = useDispatch();
 
-  const hanldeAddNewList = () => {
-    dispatch(addBoard());
+  const handleOpenBoardCreator = () => {
+    dispatch(toggleModal());
   };
 
   return (
@@ -17,7 +18,7 @@ const ControlPanel = () => {
           Project Name
         </h1>
 
-        <button onClick={hanldeAddNewList} className="regular-button">
+        <button onClick={handleOpenBoardCreator} className="regular-button">
           <IoMdAdd className=" text-paletteDark" size={"1.5rem"}></IoMdAdd>
           Add board
         </button>

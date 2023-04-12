@@ -28,6 +28,7 @@ export const dayListReducer = createSlice({
         (list: IBoardListProps) => action.payload !== list.listID
       );
     },
+
     setListName: (state, action: PayloadAction<IBoardListProps>) => {
       return state.map((list: IBoardListProps) => {
         if (action.payload.listID === list.listID) {
