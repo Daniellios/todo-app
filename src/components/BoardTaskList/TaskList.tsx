@@ -9,11 +9,11 @@ const BoardTaskList = ({ todos, listID }: ITaskListComponent) => {
         {todos.map((task: ITask) => {
           return (
             <Task
+              id={task.id}
               key={task.id}
-              task={task.taskName}
+              taskName={task.taskName}
               isCompleted={task.isCompleted}
               listID={listID}
-              taskID={task.id}
             />
           );
         })}

@@ -1,5 +1,4 @@
 interface ITaskProps extends ITask {
-  taskID: string;
   listID: string;
 }
 

@@ -7,7 +7,7 @@ export const initialBoards: IBoardListProps[] = [
     todoList: [],
     listCount: 0,
     filteredList: [],
-    color: "#2563eb",
+    color: "#2563ebb3",
   },
   {
     listID: nanoid(),
@@ -24,6 +24,6 @@ export const initialBoards: IBoardListProps[] = [
     todoList: [],
     listCount: 0,
     filteredList: [],
-    color: "#00ADB5",
+    color: "#16a34a",
   },
 ];

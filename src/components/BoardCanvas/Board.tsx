@@ -62,11 +62,11 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
     >
       {/* Header */}
       <div
-        className={`w-full flex items-center justify-center relative p-4 rounded`}
-        style={{ background: list.color }}
+        className={`w-full flex items-center justify-center bg-paletteDarkGray  text-paletteWhite relative p-4 rounded`}
+        // style={{ background: list.color }}
       >
         {boardTitleName ? (
-          <h2 className="text-paletteDark text-3xl uppercase">{list.title}</h2>
+          <h2 className="text-3xl uppercase">{list.title}</h2>
         ) : (
           <AnimatePresence>
             <motion.div
@@ -81,7 +81,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 value={title}
                 type="text "
                 placeholder="Give a name to your board"
-                className="h-8 text-paletteTeal font-semibold bg-paletteDark/50 rounded-sm  border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
+                className="h-8 text-paletteTeal font-semibold capitalize bg-paletteDark/50 rounded-sm  border-none placeholder:text-paletteWhite/70 px-4 focus:outline-none"
               />
               <motion.div
                 whileHover={{ scale: 1.2 }}
