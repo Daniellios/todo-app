@@ -18,15 +18,15 @@ module.exports = {
       gridTemplateColumns: {
         // Simple 16 column grid
         daysListXl: "repeat(3, 1fr)",
-        daysListMd: "repeat(1, calc(86% - 4rem))",
-        daysListSm: "repeat(1, calc(100% - 4rem))",
-        daysListTiny: "repeat(1, calc(100%))",
+        daysListMd: "repeat(2, 1fr)",
+        daysListSm: "repeat(1, 1fr)",
+        daysListTiny: "repeat(1, 100%)",
       },
       screens: {
         tiny: "475px",
         // => @media (min-width: 475px) { ... }
       },
     },
-    plugins: [require("flowbite/plugin")],
+    plugins: [],
   },
 };

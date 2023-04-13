@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { taskAnimation } from "../../animations/framerConfigs";
 import { deleteTask, completeTask, editTask } from "../../store/boardsSlice";
 import { IoMdAdd } from "react-icons/io";
+import dayjs from "dayjs";
 
 const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
   const dispatch = useDispatch();
@@ -48,29 +49,36 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
       className="w-full  border-gray-500/25"
     >
       <div className="flex items-center justify-between gap-4 px-4 py-2  h-full min-h-[64px] bg-paletteDarkGray rounded">
-        <h2 className="text-lg text-paletteWhite break-words text-start transition capitalize font-semibold">
-          {!isEditing && currenTaskName}
-        </h2>
+        <div className="text-sm text-paletteWhite break-words text-start transition  font-semibold">
+          <h2 className="text-lg">{!isEditing && currenTaskName}</h2>
 
-        {dates?.startDate ? <h2>{dates?.startDate.toString()}</h2> : <></>}
+          {dates?.startDate ? (
+            <h2>
+              Complete until: {dayjs(dates?.startDate).format("DD/MM/YYYY")}
+            </h2>
+          ) : (
+            <span>Date not set</span>
+          )}
+        </div>
 
         {isEditing && (
           <input
             ref={todoInput}
             value={currenTaskName}
             onChange={handleChange}
+            placeholder="Task name"
             className={
               error
                 ? "input-error"
-                : "h-8 w-full px-4 border-[1px] rounded-t-md rounded-b-md rounded-r-[0] text-paletteWhite focus:border-none outline-none placeholder:text-paletteWhite/70 bg-paletteDark"
+                : "h-8 w-full px-4 focus:border-none outline-none  bg-paletteDark"
             }
           ></input>
         )}
 
-        <div className="flex gap-4 justify-start items-center">
+        <div className="flex gap-2 justify-start items-center">
           {isEditing && (
             <IoMdAdd
-              size={"1.3rem"}
+              size={"1.5rem"}
               onClick={() => applyEditChanges()}
               className=" text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition"
             ></IoMdAdd>

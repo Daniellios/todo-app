@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import Form from "../Form/Form";
-import TaskList from "../BoardTaskList/TaskList";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { ImCross } from "react-icons/im";

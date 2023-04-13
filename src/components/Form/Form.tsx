@@ -1,10 +1,7 @@
-import { nanoid } from "@reduxjs/toolkit";
 import React, { useState, useRef, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../store/boardsSlice";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import Datepicker from "react-tailwindcss-datepicker";
 
 type TaskForm = {
@@ -48,20 +45,11 @@ const Form = ({ listID }: IFormProps) => {
     clearErrors();
   };
 
-  // Auto Focus
   useEffect(() => {
     if (todoInput.current) {
       todoInput.current.focus();
     }
   }, []);
-
-  // Empty Input Error
-  const showError = (): void => {
-    setError(true);
-    setTimeout(() => {
-      setError(false);
-    }, 1500);
-  };
 
   return (
     <div className="flex w-full justify-start gap-2 flex-col  md:flex-row md:items-center  p-4 bg-paletteDarkGray mt-2 ">
@@ -71,7 +59,7 @@ const Form = ({ listID }: IFormProps) => {
       >
         <input
           type="text"
-          placeholder={errors.taskName ? "Cannot be empty" : "Review project"}
+          placeholder={errors.taskName ? "Cannot be empty" : "Task name"}
           className={
             errors.taskName
               ? "input-error h-8 w-[180px] sm:w-[260px]"
@@ -102,14 +90,6 @@ const Form = ({ listID }: IFormProps) => {
             />
           )}
         />
-
-        {/* <button
-          data-testid="Add"
-          type="submit"
-          className="flex justify-center items-center text-paletteWhite font-semibold px-2 py-2 transition text-center text-sm w-32 hover:cursor-pointer hover:bg-paletteTeal/80 bg-paletteTeal rounded "
-        >
-          Add new task
-        </button> */}
       </form>
 
       <button
