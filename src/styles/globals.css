@@ -11,13 +11,13 @@
   }
 
   input {
-    @apply h-8 text-paletteTeal focus:outline-none placeholder:text-paletteWhite/70 px-4 font-semibold  capitalize bg-paletteDark/50 rounded-sm border-none;
+    @apply h-8 text-paletteTeal font-semibold  focus:outline-none placeholder:text-paletteWhite/60 placeholder:font-normal px-4  capitalize bg-paletteDark/50 rounded-sm border-0;
   }
 }
 
 @layer components {
   .overlay {
-    @apply absolute w-full h-full bg-black/50 z-10;
+    @apply fixed w-full h-full bg-black/50 z-10;
   }
 
   .filter-button {

@@ -21,6 +21,17 @@ export const taskAnimation = {
   },
 };
 
+export const modalAnimation = {
+  hidden: {
+    opacity: 0,
+    transition: {
+      ease: "easeInOut",
+      duration: 0.3,
+    },
+  },
+  visible: { opacity: 1 },
+};
+
 export const basicOpacityAnimation = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
