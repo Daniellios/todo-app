@@ -4,7 +4,7 @@ import Task from "../Task/Task";
 
 const BoardTaskList = ({ todos, listID }: ITaskListComponent) => {
   return (
-    <motion.div className="w-full flex flex-col justify-center items-center gap-3 text-center">
+    <motion.div className="w-full flex flex-col rounded justify-center items-center gap-3 text-center">
       <AnimatePresence>
         {todos.map((task: ITask) => {
           return (

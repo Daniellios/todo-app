@@ -28,20 +28,24 @@ const Form = ({ listID }: IFormProps) => {
   const [error, setError] = useState<boolean>(false);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      clearErrors();
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, [errors, clearErrors]);
+
   const todoInput = useRef<HTMLInputElement>(null);
-
-  const [task, setTask] = useState<string>("");
-
-  // Task Text Setup
-  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    setTask(e.currentTarget.value);
-  };
 
   const handleTask = (): void => {
     const formValues = getValues();
+    console.log(errors);
 
     dispatch(addTask(listID, formValues.taskName, formValues.dates));
+
     reset({ taskName: "", dates: { endDate: null, startDate: null } });
+    clearErrors();
   };
 
   // Auto Focus
@@ -60,29 +64,26 @@ const Form = ({ listID }: IFormProps) => {
   };
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full justify-start gap-2 flex-col  md:flex-row md:items-center  p-4 bg-paletteDarkGray mt-2 ">
       <form
         onSubmit={handleSubmit(handleTask)}
-        className="flex w-full flex-col gap-4 bg-paletteDarkGray p-4"
+        className="flex flex-col  w-full gap-4 bg-paletteDarkGray "
       >
         <input
           type="text"
-          // ref={todoInput}
-          placeholder={error ? "Cannot be empty" : "Review project"}
+          placeholder={errors.taskName ? "Cannot be empty" : "Review project"}
           className={
-            error
-              ? "input-error"
-              : "h-8 px-4 w-[260px] border-[1px] rounded text-paletteTeal  border-none outline-none  bg-paletteDark"
+            errors.taskName
+              ? "input-error h-8 w-[180px] sm:w-[260px]"
+              : "h-8 px-4  w-[180px]  sm:w-[260px] border-[1px] rounded text-paletteTeal  border-none outline-none  bg-paletteDark"
           }
-          // value={task}
-          // onChange={handleChange}
           {...register("taskName", { required: true })}
         />
 
         <Controller
           control={control}
           name="dates"
-          render={({ field: { value, onChange } }) => (
+          render={({ field: { value, onChange }, formState: { errors } }) => (
             <Datepicker
               primaryColor={"teal"}
               i18n={"ru"}
@@ -90,34 +91,37 @@ const Form = ({ listID }: IFormProps) => {
               toggleClassName="text-paletteWhite"
               asSingle={true}
               useRange={false}
+              readOnly
               inputName="dates"
               onChange={onChange}
+              displayFormat={"DD/MM/YYYY"}
               //@ts-ignore
               value={value}
               startWeekOn="mon"
-              inputClassName="bg-paletteDark rounded h-8 mr-2 w-[260px]"
+              inputClassName="bg-paletteDark rounded h-8 mr-2  w-[180px]  sm:w-[260px]"
             />
           )}
         />
 
-        <button
+        {/* <button
           data-testid="Add"
           type="submit"
           className="flex justify-center items-center text-paletteWhite font-semibold px-2 py-2 transition text-center text-sm w-32 hover:cursor-pointer hover:bg-paletteTeal/80 bg-paletteTeal rounded "
         >
           Add new task
-        </button>
+        </button> */}
       </form>
 
-      {errors.dates && <span>gsgsg</span>}
-
-      {/* <button
+      <button
+        onClick={handleSubmit(handleTask)}
         data-testid="Add"
-        className="flex justify-center items-center text-paletteWhite font-semibold px-1 border-l-[1px] border-gray-500/25 transition text-center text-sm w-32 hover:cursor-pointer hover:bg-paletteTeal rounded-r-md"
-        onClick={() => handleTask()}
+        type="submit"
+        className="flex h-10 justify-center items-center text-paletteWhite font-semibold px-2 py-2 transition text-center text-sm w-24 hover:cursor-pointer hover:bg-paletteTeal/80 bg-paletteTeal rounded "
       >
-        Add new task
-      </button> */}
+        Add task
+      </button>
+
+      {errors.dates && <span>gsgsg</span>}
     </div>
   );
 };

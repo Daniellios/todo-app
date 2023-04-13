@@ -45,7 +45,7 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
       initial="hidden"
       animate="visible"
       exit={{ opacity: 0 }}
-      className="w-full  border-b-[1px] border-gray-500/25 "
+      className="w-full  border-gray-500/25"
     >
       <div className="flex items-center justify-between gap-4 px-4 py-2  h-full min-h-[64px] bg-paletteDarkGray rounded">
         <h2 className="text-lg text-paletteWhite break-words text-start transition capitalize font-semibold">

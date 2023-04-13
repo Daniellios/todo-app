@@ -41,8 +41,6 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
   };
 
   const applyEditChanges = (): void => {
-    console.log("TITL - ", title);
-
     if (!title) showError();
     else {
       dispatch(
@@ -59,24 +57,8 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
     }
   };
 
-  // const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-  //   setBoardTitleName(e.currentTarget.value);
-  // };
-
   const onTitleChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
     setTitle(e.currentTarget.value);
-
-  // const confirmTitle = (): void => {
-  //   if (title) {
-  //     dispatch(
-  //       setListName({
-  //         ...list,
-  //         title,
-  //       })
-  //     );
-  //     setBoardTitleName(list.title);
-  //   }
-  // };
 
   const handleDeleteTaskCard = () => {
     dispatch(deleteBoard(list.listID));
@@ -96,7 +78,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
       animate="visible"
       layout
       exit={{ size: 0, opacity: 0 }}
-      className="flex flex-col w-full h-max gap-6 shadow-lg bg-transparent rounded"
+      className="flex flex-col w-full h-max  shadow-lg bg-transparent rounded p-1"
     >
       {/* Header */}
       <div
@@ -118,9 +100,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 onChange={onTitleChange}
                 value={title}
                 type="text "
-                placeholder={
-                  error ? "Incorrect board name" : ` Give a name to your board`
-                }
+                placeholder={error ? "Incorrect board name" : `Name your board`}
                 className={
                   error
                     ? "border-[1px]  border-paletteRed outline-none placeholder:text-paletteRed"
@@ -163,7 +143,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
       </div>
 
       {boardTitleName && (
-        <div className="p-4 flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
           <Form listID={list.listID} />
 
           <BoardTaskList todos={list.filteredList} listID={list.listID} />

@@ -27,7 +27,7 @@
     @apply text-paletteWhite/90 bg-paletteDark text-lg font-bold md:text-xl px-1 border-[1px] border-transparent rounded transition;
   }
   .input-error {
-    @apply h-full w-full px-4 rounded-t-md rounded-b-md  rounded-r-[0] border-[1px] bg-paletteDark  border-paletteRed outline-none placeholder:text-paletteRed;
+    @apply h-full border-[1px] bg-paletteDark  border-paletteRed outline-none placeholder:text-paletteRed;
   }
   .regular-button {
     @apply w-max rounded gap-1 transition-all px-1 cursor-pointer hover:bg-paletteWhite font-bold text-xl flex justify-between items-center;
