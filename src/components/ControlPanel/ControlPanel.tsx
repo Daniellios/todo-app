@@ -1,8 +1,7 @@
 import React from "react";
 import { IoMdAdd } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { addBoard, clearCompleted } from "../../store/boardsSlice";
-import { openModal, toggleModal } from "../../store/uiSlice";
+import { useDispatch } from "react-redux";
+import { toggleModal } from "../../store/uiSlice";
 
 const ControlPanel = () => {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ const ControlPanel = () => {
 
         <button onClick={handleOpenBoardCreator} className="regular-button">
           <IoMdAdd className=" text-paletteDark" size={"1.5rem"}></IoMdAdd>
-          Add board
+          New board
         </button>
       </div>
     </div>

@@ -3,11 +3,6 @@ import boardListReducer from "./boardsSlice";
 import filterReducer from "./fliterSlice";
 import uiReducer from "./uiSlice";
 
-// export const rootReducer = combineReducers({
-//   list: dayListReducer,
-//   todos: todoListReducer,
-// })
-
 export const store = configureStore({
   reducer: {
     boards: boardListReducer,

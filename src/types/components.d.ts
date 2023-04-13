@@ -12,7 +12,7 @@ interface ITaskListComponent {
 }
 
 interface IFormProps {
-  list: IBoardListProps;
+  listID: string;
 }
 
 interface IListComponent {

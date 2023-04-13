@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+  ],
   theme: {
     extend: {
       colors: {
@@ -23,6 +27,6 @@ module.exports = {
         // => @media (min-width: 475px) { ... }
       },
     },
-    plugins: [],
+    plugins: [require("flowbite/plugin")],
   },
 };

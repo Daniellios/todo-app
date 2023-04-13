@@ -12,6 +12,7 @@ const BoardTaskList = ({ todos, listID }: ITaskListComponent) => {
               id={task.id}
               key={task.id}
               taskName={task.taskName}
+              dates={task.dates}
               isCompleted={task.isCompleted}
               listID={listID}
             />

@@ -164,7 +164,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
 
       {boardTitleName && (
         <div className="p-4 flex flex-col gap-4">
-          <Form list={list} />
+          <Form listID={list.listID} />
 
           <BoardTaskList todos={list.filteredList} listID={list.listID} />
         </div>

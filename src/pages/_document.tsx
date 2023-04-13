@@ -6,7 +6,7 @@ export default function Document() {
   return (
     <Html>
       <Head />
-      <body>
+      <body className="dark">
         <Main />
         <Script
           src="https://telegram.org/js/telegram-web-app.js"

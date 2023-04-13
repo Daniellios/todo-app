@@ -4,8 +4,8 @@ import tasksLeft from "../helpers/tasksLeft";
 import { setAll, setActive, setCompleted } from "./fliterSlice";
 import { RootState } from "./store";
 
-export const dayListReducer = createSlice({
-  name: "dayListReducer",
+export const boardListReducer = createSlice({
+  name: "boardListReducer",
   initialState: initialBoards,
   reducers: {
     addBoard: {
@@ -51,21 +51,56 @@ export const dayListReducer = createSlice({
         return list;
       });
     },
-    addTask: (state, action: PayloadAction<{ ID: string; task: string }>) => {
-      state.map((list: IBoardListProps) => {
-        if (list.listID === action.payload.ID) {
-          const newTask = {
-            id: "T" + nanoid(6),
-            isCompleted: false,
-            taskName: action.payload.task,
-          };
-          list.filteredList.unshift(newTask);
-          list.todoList.unshift(newTask);
-          list.listCount = tasksLeft(list.filteredList.length);
-        }
-        return list;
-      });
+    addTask: {
+      reducer(state, action: PayloadAction<{ task: ITask; boardID: string }>) {
+        state.map((list: IBoardListProps) => {
+          if (list.listID === action.payload.boardID) {
+            list.filteredList.unshift(action.payload.task);
+            list.todoList.unshift({ ...action.payload.task });
+            list.listCount = tasksLeft(list.filteredList.length);
+          }
+          return list;
+        });
+      },
+      prepare(boardID: string, taskName: string, dates?: ITaskDates) {
+        return {
+          payload: {
+            task: {
+              id: "T" + nanoid(6),
+              isCompleted: false,
+              taskName: taskName,
+              dates: dates,
+            },
+            boardID: boardID,
+          },
+          // payload: {
+          //   id: "T" + nanoid(6),
+          //   isCompleted: false,
+          //   taskName: taskName,
+          //   dueDate: dueDate,
+          // },
+        };
+      },
     },
+    // addTask: (
+    //   state,
+    //   action: PayloadAction<{ ID: string; task: string; date: Date }>
+    // ) => {
+    //   state.map((list: IBoardListProps) => {
+    //     if (list.listID === action.payload.ID) {
+    //       const newTask: ITask = {
+    //         id: "T" + nanoid(6),
+    //         isCompleted: false,
+    //         taskName: action.payload.task,
+    //         dueDate: action.payload.date,
+    //       };
+    //       list.filteredList.unshift(newTask);
+    //       list.todoList.unshift(newTask);
+    //       list.listCount = tasksLeft(list.filteredList.length);
+    //     }
+    //     return list;
+    //   });
+    // },
     editTask: (
       state,
       action: PayloadAction<{
@@ -161,6 +196,6 @@ export const {
   deleteTask,
   completeTask,
   clearCompleted,
-} = dayListReducer.actions;
+} = boardListReducer.actions;
 
-export default dayListReducer.reducer;
+export default boardListReducer.reducer;

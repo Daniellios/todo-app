@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
-import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
-import { AnimatePresence, motion } from "framer-motion";
+import { AiFillEdit } from "react-icons/ai";
+import { motion } from "framer-motion";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { taskAnimation } from "../../animations/framerConfigs";
 import { deleteTask, completeTask, editTask } from "../../store/boardsSlice";
 import { IoMdAdd } from "react-icons/io";
 
-const Task = ({ taskName, isCompleted, id, listID }: ITaskProps) => {
+const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -52,6 +52,8 @@ const Task = ({ taskName, isCompleted, id, listID }: ITaskProps) => {
           {!isEditing && currenTaskName}
         </h2>
 
+        {dates?.startDate ? <h2>{dates?.startDate.toString()}</h2> : <></>}
+
         {isEditing && (
           <input
             ref={todoInput}
@@ -60,7 +62,7 @@ const Task = ({ taskName, isCompleted, id, listID }: ITaskProps) => {
             className={
               error
                 ? "input-error"
-                : "h-8 w-full px-4 border-[1px] rounded-t-md rounded-b-md rounded-r-[0] text-paletteWhite focus: border-none outline-none placeholder:text-paletteWhite/70 bg-paletteDark"
+                : "h-8 w-full px-4 border-[1px] rounded-t-md rounded-b-md rounded-r-[0] text-paletteWhite focus:border-none outline-none placeholder:text-paletteWhite/70 bg-paletteDark"
             }
           ></input>
         )}

@@ -1,7 +1,13 @@
 interface ITask {
+  id: string;
   taskName: string;
   isCompleted: boolean;
-  id: string;
+  dates?: ITaskDates;
+}
+
+interface ITaskDates {
+  startDate?: Date | null;
+  endDate?: Date | null;
 }
 
 interface IBoard {

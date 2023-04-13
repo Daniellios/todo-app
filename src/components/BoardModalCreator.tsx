@@ -23,6 +23,12 @@ const BoardModalCreator: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const modalRef = useRef(null);
+
+  const dispatch = useDispatch();
+
+  const isOpen = useSelector(selectModalStatus);
+
   useEffect(() => {
     let timeout = setTimeout(() => {
       clearErrors();
@@ -30,12 +36,6 @@ const BoardModalCreator: React.FC = () => {
 
     return () => clearTimeout(timeout);
   }, [errors, clearErrors]);
-
-  const dispatch = useDispatch();
-
-  const isOpen = useSelector(selectModalStatus);
-
-  const modalRef = useRef(null);
 
   const handleCloseModal = (): void => {
     dispatch(closeModal());
@@ -77,7 +77,6 @@ const BoardModalCreator: React.FC = () => {
               onSubmit={handleSubmit(handleAddBoard)}
               className="flex flex-col items-start gap-2"
             >
-              {/* register your input into the hook by invoking the "register" function */}
               <input
                 placeholder="Board name"
                 className={`h-10 pl-2 ${
@@ -88,7 +87,6 @@ const BoardModalCreator: React.FC = () => {
                 {...register("boardName", { required: true })}
               />
 
-              {/* errors will return when field validation fails  */}
               {errors.boardName && (
                 <span className="text-paletteRed text-sm">
                   This field is required
