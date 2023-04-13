@@ -1,5 +1,1 @@
-TO DO Application для тестового задания
-
-Немного дополнительной информации о проекте : 
-  1. Next использовал просто из-за удобства и быстрым началом работы с новым проектом
-![](public/images/filename%20app-preview.png)
+# TO DO APP WITH TELEGRAM BOT INTERGATION

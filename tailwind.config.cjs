@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+  ],
   theme: {
     extend: {
       colors: {
@@ -13,11 +17,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Simple 16 column grid
-        daysListXl:
-          "repeat(auto-fit, minmax(calc(50% - 4rem), calc(50% - 4rem)))",
-        daysListMd: "repeat(1, calc(86% - 4rem))",
-        daysListSm: "repeat(1, calc(100% - 4rem))",
-        daysListTiny: "repeat(1, calc(100% ))",
+        daysListXl: "repeat(3, 1fr)",
+        daysListMd: "repeat(2, 1fr)",
+        daysListSm: "repeat(1, 1fr)",
+        daysListTiny: "repeat(1, 100%)",
       },
       screens: {
         tiny: "475px",
@@ -26,4 +29,4 @@ module.exports = {
     },
     plugins: [],
   },
-}
+};

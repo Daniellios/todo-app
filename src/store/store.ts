@@ -1,19 +1,16 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import dayListReducer from "./dayLIstSlice"
-import filterReducer from "./fliterSlice"
-
-// export const rootReducer = combineReducers({
-//   list: dayListReducer,
-//   todos: todoListReducer,
-// })
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import boardListReducer from "./boardsSlice";
+import filterReducer from "./fliterSlice";
+import uiReducer from "./uiSlice";
 
 export const store = configureStore({
   reducer: {
-    list: dayListReducer,
+    boards: boardListReducer,
     filter: filterReducer,
+    ui: uiReducer,
   },
-})
+});
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
