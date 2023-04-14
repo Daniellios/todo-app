@@ -1,16 +1,14 @@
+"use client";
+
 import type { NextPage } from "next";
 import Head from "next/head";
 import Header from "../components/ControlPanel/ControlPanel";
 
-import BoardsList from "../components/BoardCanvas/BoardList";
-import Script from "next/script";
-import BoardModalCreator from "../components/BoardModalCreator";
 import { useSelector } from "react-redux";
 import { selectModalStatus } from "../store/uiSlice";
-
-export const metadata = {
-  title: "Kanban",
-};
+import BoardModalCreator from "../components/BoardModalCreator";
+import BoardsList from "../components/BoardCanvas/BoardList";
+import "../styles/globals.css";
 
 const Home: NextPage = () => {
   const isOpen = useSelector(selectModalStatus);
@@ -26,8 +24,6 @@ const Home: NextPage = () => {
 
       <main className="mx-auto flex flex-col items-center justify-start h-screen w-screen overflow-x-hidden scrollbar">
         <Header />
-
-        <Script></Script>
 
         <BoardModalCreator></BoardModalCreator>
 

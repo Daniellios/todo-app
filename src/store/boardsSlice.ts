@@ -1,3 +1,5 @@
+"use client";
+
 import { createSlice, PayloadAction, nanoid, current } from "@reduxjs/toolkit";
 import { initialBoards } from "../contstants/initialData";
 import tasksLeft from "../helpers/tasksLeft";
