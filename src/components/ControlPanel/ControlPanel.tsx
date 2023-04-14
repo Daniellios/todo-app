@@ -13,7 +13,7 @@ const ControlPanel = () => {
   return (
     <div className="w-full bg-paletteTeal flex items-center justify-center p-4 h-24">
       <div className="flex w-full items-center justify-between max-w-[1980px]">
-        <h1 className="text-paletteDark text-3xl font-semibold uppercase">
+        <h1 className="text-paletteDark text-lg sm:text-3xl font-semibold uppercase">
           Kanban board
         </h1>
 

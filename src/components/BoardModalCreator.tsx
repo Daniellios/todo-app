@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
-import { modalAnimation } from "../animations/framerConfigs";
+import { basicOpacityAnimation } from "../animations/framerConfigs";
 import useOnClickOutside from "../hooks/useClickOutside";
 import { addBoard } from "../store/boardsSlice";
 import { closeModal, selectModalStatus } from "../store/uiSlice";
@@ -58,10 +58,10 @@ const BoardModalCreator: React.FC = () => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          variants={modalAnimation}
+          variants={basicOpacityAnimation}
           initial="hidden"
           animate="visible"
-          exit={{ size: 0, opacity: 0, transition: { duration: 0.2 } }}
+          exit="exit"
           ref={modalRef}
           className="p-2 w-[320px] h-80 bg-paletteDarkGray rounded absolute z-20 left-1/2 top-1/2 -translate-x-1/2  -translate-y-1/2"
         >
