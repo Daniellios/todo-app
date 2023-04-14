@@ -21,18 +21,41 @@ export const taskAnimation = {
   },
 };
 
-export const modalAnimation = {
+export const taskFormAnimation = {
   hidden: {
     opacity: 0,
     transition: {
-      ease: "easeInOut",
-      duration: 0.3,
+      ease: "linear",
+      duration: 0.1,
     },
   },
-  visible: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 0.2,
+      ease: "linear",
+      duration: 0.2,
+    },
+  },
+  exit: {
+    opacity: 0,
+    display: "none",
+    transition: { ease: "linear" },
+  },
+};
+
+export const taskFormFoldedContainer = {
+  initial: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.2, ease: "linear" },
+  },
 };
 
 export const basicOpacityAnimation = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
+  exit: { size: 0, opacity: 0, transition: { duration: 0.2 } },
 };

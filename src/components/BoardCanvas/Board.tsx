@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import Form from "../Form/Form";
+import TaskForm from "../Forms/TaskForm";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { ImCross } from "react-icons/im";
@@ -72,6 +72,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
 
   return (
     <motion.div
+      key={"board_task_card"}
       variants={listAnimation}
       initial="hidden"
       animate="visible"
@@ -89,6 +90,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
         {isEditing && (
           <AnimatePresence>
             <motion.div
+              key={"ssss"}
               variants={titleInputAnimiation}
               initial="hidden"
               animate="visible"
@@ -108,6 +110,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
               />
 
               <motion.div
+                key={"board_confirm"}
                 whileHover={{ scale: 1.2 }}
                 whileTap={
                   boardTitleName ? { scale: 0.7, opacity: 0 } : { rotate: 10 }
@@ -142,8 +145,8 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
       </div>
 
       {boardTitleName && (
-        <div className="flex flex-col gap-4">
-          <Form listID={list.listID} />
+        <div className="flex flex-col gap-4 transition-all">
+          <TaskForm listID={list.listID} />
 
           <BoardTaskList todos={list.filteredList} listID={list.listID} />
         </div>
