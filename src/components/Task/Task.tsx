@@ -45,7 +45,7 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
       variants={taskAnimation}
       initial="hidden"
       animate="visible"
-      exit={{ opacity: 0 }}
+      exit="exit"
       className="w-full  border-gray-500/25"
     >
       <div className="flex items-center justify-between gap-4 px-4 py-2  h-full min-h-[64px] bg-paletteDarkGray rounded">

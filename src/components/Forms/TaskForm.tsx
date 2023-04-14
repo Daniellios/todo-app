@@ -42,15 +42,20 @@ const TaskForm = ({ listID }: IFormProps) => {
     return () => clearTimeout(timeout);
   }, [errors, clearErrors]);
 
-  const handleTask = (): void => {
-    const formValues = getValues();
-    dispatch(addTask(listID, formValues.taskName, formValues.dates));
+  const handleFormClear = (): void => {
     reset({ taskName: "", dates: { endDate: null, startDate: null } });
     clearErrors();
   };
 
+  const handleTask = (): void => {
+    const formValues = getValues();
+    dispatch(addTask(listID, formValues.taskName, formValues.dates));
+    handleFormClear();
+  };
+
   const handleFormFold = (): void => {
     setIsFormFolded(!isFormFolded);
+    handleFormClear();
   };
 
   return (
@@ -126,17 +131,17 @@ const TaskForm = ({ listID }: IFormProps) => {
                   primaryColor={"teal"}
                   i18n={"ru"}
                   placeholder="Due date"
-                  toggleClassName="text-paletteWhite"
+                  toggleClassName="text-paletteWhite hover:text-paletteTeal"
                   asSingle={true}
                   useRange={false}
-                  readOnly
                   inputName="dates"
+                  readOnly
                   onChange={onChange}
                   displayFormat={"DD/MM/YYYY"}
                   //@ts-ignore
                   value={value}
                   startWeekOn="mon"
-                  inputClassName="bg-paletteDark rounded h-8 mr-2  w-[180px]  sm:w-[260px]"
+                  inputClassName="bg-paletteDark rounded h-8 mr-2 w-[180px] sm:w-[260px] "
                 />
               )}
             />

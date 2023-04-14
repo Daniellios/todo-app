@@ -33,6 +33,7 @@ export const taskAnimation = {
       duration: 0.3,
     },
   },
+  exit: { opacity: 0 },
 };
 
 export const taskFormAnimation = {
