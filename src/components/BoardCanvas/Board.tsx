@@ -64,7 +64,6 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
     dispatch(deleteBoard(list.listID));
   };
 
-  // Update Filtered TaskCard
   useEffect(() => {
     if (null !== titleInput.current) {
       titleInput.current.focus();
@@ -78,7 +77,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
       initial="hidden"
       animate="visible"
       layout
-      exit={{ size: 0, opacity: 0 }}
+      exit={"exit"}
       className="flex flex-col w-full h-max  shadow-lg bg-transparent rounded p-1"
     >
       {/* Header */}

@@ -20,6 +20,7 @@ export const titleTextAnimation = {
 export const listAnimation = {
   hidden: { x: -100, opacity: 0.4 },
   visible: { x: 0, opacity: 1 },
+  exit: { size: 0, opacity: 0 },
 };
 
 export const taskAnimation = {
