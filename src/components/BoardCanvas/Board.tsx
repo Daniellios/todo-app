@@ -9,6 +9,7 @@ import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import {
   titleInputAnimiation,
   listAnimation,
+  titleTextAnimation,
 } from "../../animations/framerConfigs";
 import BoardTaskList from "../BoardTaskList/TaskList";
 import { deleteBoard, editListName } from "../../store/boardsSlice";
@@ -82,19 +83,31 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
     >
       {/* Header */}
       <div
-        className={`w-full flex items-center justify-center bg-paletteDarkGray  text-paletteWhite relative p-4 rounded`}
-        // style={{ background: list.color }}
+        className={`w-full flex justify-start tiny:justify-center  bg-paletteDarkGray  text-paletteWhite relative p-2 sm:p-4 rounded`}
       >
-        {!isEditing && <h2 className="text-3xl uppercase">{list.title}</h2>}
+        <AnimatePresence>
+          {!isEditing && (
+            <motion.h2
+              variants={titleTextAnimation}
+              initial={"initial"}
+              animate={"animate"}
+              exit={"exit"}
+              className="text-xl sm:text-3xl uppercase "
+            >
+              {list.title}
+            </motion.h2>
+          )}
+        </AnimatePresence>
 
-        {isEditing && (
-          <AnimatePresence>
+        <AnimatePresence>
+          {isEditing && (
             <motion.div
               key={"ssss"}
               variants={titleInputAnimiation}
               initial="hidden"
               animate="visible"
-              className="flex justify-center items-center space-x-4"
+              exit={"exit"}
+              className="flex justify-start tiny:justify-center items-center space-x-4 "
             >
               <input
                 ref={titleInput}
@@ -104,8 +117,8 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 placeholder={error ? "Incorrect board name" : `Name your board`}
                 className={
                   error
-                    ? "border-[1px]  border-paletteRed outline-none placeholder:text-paletteRed"
-                    : "capitalize border-none"
+                    ? "border-[1px]  border-paletteRed outline-none placeholder:text-paletteRed w-1/2 sm:w-full"
+                    : "capitalize border-none w-1/2 sm:w-full"
                 }
               />
 
@@ -125,21 +138,20 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
                 />
               </motion.div>
             </motion.div>
-          </AnimatePresence>
-        )}
+          )}
+        </AnimatePresence>
 
         <div className="flex items-center gap-2 absolute top-2 right-4">
           {!isEditing && (
             <AiFillEdit
-              size={"1.2rem"}
               onClick={toggleEdit}
-              className=" text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition"
+              className=" text-paletteWhite flex ml-auto text-lg hover:text-paletteTeal cursor-pointer transition"
             ></AiFillEdit>
           )}
 
           <ImCross
             onClick={handleDeleteTaskCard}
-            className=" text-paletteWhite hover:text-paletteRed hover:rotate-90 cursor-pointer transition"
+            className=" text-paletteWhite hover:text-paletteRed text-sm  hover:rotate-90 cursor-pointer transition"
           />
         </div>
       </div>

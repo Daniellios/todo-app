@@ -1,7 +1,20 @@
 export const titleInputAnimiation = {
-  hidden: { opacity: 0, scaleX: 0, x: -100 },
-  visible: { opacity: 1, scaleX: 1, x: 0, transition: { delay: 0.1 } },
-  exit: { scaleX: 0 },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2, ease: "linear" } },
+  exit: { opacity: 0, transition: { duration: 0.2, ease: "linear" } },
+};
+
+export const titleTextAnimation = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: { delay: 0.4, duration: 0.2, ease: "linear" },
+  },
+  exit: {
+    opacity: 0,
+    display: "none",
+    transition: { duration: 0.2, ease: "linear" },
+  },
 };
 
 export const listAnimation = {

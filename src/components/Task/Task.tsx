@@ -57,7 +57,7 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
               Complete until: {dayjs(dates?.startDate).format("DD/MM/YYYY")}
             </h2>
           ) : (
-            <span>Date not set</span>
+            <span>No date</span>
           )}
         </div>
 

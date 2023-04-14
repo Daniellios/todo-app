@@ -44,10 +44,7 @@ const TaskForm = ({ listID }: IFormProps) => {
 
   const handleTask = (): void => {
     const formValues = getValues();
-    console.log(errors);
-
     dispatch(addTask(listID, formValues.taskName, formValues.dates));
-
     reset({ taskName: "", dates: { endDate: null, startDate: null } });
     clearErrors();
   };
@@ -60,11 +57,13 @@ const TaskForm = ({ listID }: IFormProps) => {
     <motion.div
       key={"taskWrap"}
       onClick={!isFormFolded ? () => {} : handleFormFold}
-      className={`flex w-full  gap-2 flex-col  md:flex-row md:items-end  p-2 bg-paletteDarkGray mt-2 rounded  relative  ${
-        !isFormFolded ? "" : " hover:bg-paletteTeal cursor-pointer  "
+      className={`flex w-full gap-2 flex-col items-start  sm:flex-row md:items-end  p-2 bg-paletteDarkGray mt-2 rounded  relative  ${
+        !isFormFolded
+          ? ""
+          : " hover:bg-paletteTeal cursor-pointer  transition-colors"
       }`}
       initial={{
-        height: `${!isFormFolded ? "40px" : "100%"}`,
+        height: "100%",
       }}
       animate={{
         height: `${!isFormFolded ? "100%" : "40px"}`,
@@ -159,7 +158,7 @@ const TaskForm = ({ listID }: IFormProps) => {
         </button>
       )}
 
-      <div className="flex flex-col justify-end items-end h-[80px] relative">
+      <div className="flex flex-col justify-end items-end sm:h-[80px] relative">
         <AnimatePresence>
           {!isFormFolded && (
             <motion.button
@@ -169,11 +168,10 @@ const TaskForm = ({ listID }: IFormProps) => {
               animate="visible"
               exit={"exit"}
               onClick={handleSubmit(handleTask)}
-              data-testid="Add"
               type="submit"
               className="flex h-10 justify-center items-center text-paletteWhite font-semibold px-2 py-2 transition text-center text-sm w-24 hover:cursor-pointer hover:bg-paletteTeal/80 bg-paletteTeal rounded "
             >
-              Confirm
+              Add
             </motion.button>
           )}
         </AnimatePresence>
