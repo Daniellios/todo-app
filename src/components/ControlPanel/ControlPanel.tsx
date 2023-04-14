@@ -4,8 +4,12 @@ import React from "react";
 import { IoMdAdd } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../store/uiSlice";
-
+import useTranslation from "next-translate/useTranslation";
 const ControlPanel = () => {
+  const { t, lang } = useTranslation("home");
+
+  console.log(lang);
+
   const dispatch = useDispatch();
 
   const handleOpenBoardCreator = () => {
@@ -21,7 +25,7 @@ const ControlPanel = () => {
 
         <button onClick={handleOpenBoardCreator} className="regular-button">
           <IoMdAdd className=" text-paletteDark" size={"1.5rem"}></IoMdAdd>
-          New board
+          New Board
         </button>
       </div>
     </div>
