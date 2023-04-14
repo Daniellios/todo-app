@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
 import { useSelector } from "react-redux";

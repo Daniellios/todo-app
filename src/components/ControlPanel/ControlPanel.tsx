@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { IoMdAdd } from "react-icons/io";
 import { useDispatch } from "react-redux";

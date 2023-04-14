@@ -1,3 +1,5 @@
+"use client";
+
 import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
