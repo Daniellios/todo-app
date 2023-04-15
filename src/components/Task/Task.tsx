@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
@@ -20,13 +20,17 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
 
   const [currenTaskName, setCurrentTaskName] = useState<string>(taskName);
 
-  const handleDone = (): void => {
+  const handleTaskDone = (): void => {
     dispatch(completeTask({ ID: listID, taskID: id }));
     setIsDone(!isDone);
   };
 
+  const handleTaskDelete = (): void => {
+    dispatch(deleteTask({ ID: listID, taskID: id }));
+  };
+
   const toggleEdit = (): void => {
-    setIsEditing(true);
+    setIsEditing(!isEditing);
   };
 
   const applyEditChanges = (): void => {
@@ -48,8 +52,8 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
       exit="exit"
       className="w-full  border-gray-500/25"
     >
-      <div className="flex items-center justify-between gap-4 px-4 py-2  h-full min-h-[64px] bg-paletteDarkGray rounded">
-        <div className="text-sm text-paletteWhite break-words text-start transition  font-semibold">
+      <div className="flex items-center justify-between gap-4 px-4 py-2  h-full min-h-[64px] bg-paletteDarkGray rounded relative">
+        <div className="text-sm text-paletteWhite break-words text-start transition  font-semibold ">
           <h2 className="text-lg">{!isEditing && currenTaskName}</h2>
 
           {dates?.startDate ? (
@@ -70,29 +74,36 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
             className={
               error
                 ? "input-error"
-                : "h-8 w-full px-4 focus:border-none outline-none  bg-paletteDark"
+                : "h-8 w-3/4 px-4 focus:border-none outline-none  bg-paletteDark "
             }
           ></input>
         )}
 
-        <div className="flex gap-2 justify-start items-center">
+        <div className="flex flex-col  justify-start items-end mr-6 transition  gap-2 ">
           {isEditing && (
             <IoMdAdd
-              size={"1.5rem"}
               onClick={() => applyEditChanges()}
-              className=" text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition"
+              className=" text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer text-lg "
             ></IoMdAdd>
           )}
 
           <AiFillEdit
             onClick={toggleEdit}
-            className="text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer transition"
+            className="text-paletteWhite flex ml-auto hover:text-paletteTeal cursor-pointer  text-lg"
           ></AiFillEdit>
+        </div>
 
-          <BsFillTrashFill
-            onClick={() => dispatch(deleteTask({ ID: listID, taskID: id }))}
-            className="text-paletteWhite flex ml-auto hover:text-paletteRed cursor-pointer transition"
-          />
+        <div className="h-full flex flex-col absolute  justify-between rounded-r  right-0  transition">
+          <button
+            onClick={handleTaskDone}
+            className=" text-paletteWhite text-base  hover:bg-paletteTeal  rounded-tr h-full px-2  transition"
+          >
+            <AiOutlineCheck></AiOutlineCheck>
+          </button>
+
+          <button className=" text-paletteWhite text-base  hover:bg-paletteRed  rounded-br  h-full px-2  transition">
+            <BsFillTrashFill onClick={handleTaskDelete} />
+          </button>
         </div>
       </div>
     </motion.div>
