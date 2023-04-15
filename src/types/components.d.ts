@@ -22,3 +22,8 @@ interface IListComponent {
 interface IBoardListProps extends IBoard {
   color?: string;
 }
+interface IProject {
+  id: string;
+  projectName: string;
+  projectBoards: IBoardListProps[];
+}

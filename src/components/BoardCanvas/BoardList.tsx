@@ -9,6 +9,8 @@ import BoardTaskCard from "./Board";
 const BoardsList = () => {
   const boards = useSelector(selectAllBoards);
 
+  console.log(boards);
+
   useEffect(() => {}, []);
 
   return (

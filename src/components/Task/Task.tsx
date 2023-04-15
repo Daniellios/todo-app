@@ -3,7 +3,11 @@ import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { taskAnimation } from "../../animations/framerConfigs";
+import {
+  taskAnimation,
+  taskDoneOverlay,
+  taskDoneText,
+} from "../../animations/framerConfigs";
 import { deleteTask, completeTask, editTask } from "../../store/boardsSlice";
 import { IoMdAdd } from "react-icons/io";
 import dayjs from "dayjs";
@@ -67,18 +71,17 @@ const Task = ({ taskName, isCompleted, id, listID, dates }: ITaskProps) => {
       <AnimatePresence>
         {isDone && (
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "100%", transition: { ease: "linear" } }}
-            exit={{ width: 0, transition: { ease: "linear", delay: 0.1 } }}
+            variants={taskDoneOverlay}
+            initial={"initial"}
+            animate={"animate"}
+            exit={"exit"}
             className="w-full bg-green-600 h-full absolute opacity-90 z-10 rounded flex items-center justify-center"
           >
             <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { ease: "linear", delay: 0.3 },
-              }}
-              exit={{ opacity: 0, transition: { ease: "linear" } }}
+              variants={taskDoneText}
+              initial={"initial"}
+              animate={"animate"}
+              exit={"exit"}
               className="text-paletteWhite font-bold text-3xl"
             >
               DONE 🥳

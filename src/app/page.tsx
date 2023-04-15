@@ -2,7 +2,7 @@
 
 import type { NextPage } from "next";
 import Head from "next/head";
-import Header from "../components/ControlPanel/ControlPanel";
+import ControlPanel from "../components/ControlPanel/ControlPanel";
 
 import { useSelector } from "react-redux";
 import { selectModalStatus } from "../store/uiSlice";
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       {isOpen && <div className="overlay"></div>}
 
       <main className="mx-auto flex flex-col items-center justify-start h-screen w-screen overflow-x-hidden scrollbar">
-        <Header />
+        <ControlPanel />
 
         <BoardModalCreator></BoardModalCreator>
 
