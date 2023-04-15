@@ -1,13 +1,13 @@
 "use client";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import boardListReducer from "./boardsSlice";
+import projectsListReducer from "./boardsSlice";
 import filterReducer from "./fliterSlice";
 import uiReducer from "./uiSlice";
 
 export const store = configureStore({
   reducer: {
-    boards: boardListReducer,
+    projects: projectsListReducer,
     filter: filterReducer,
     ui: uiReducer,
   },

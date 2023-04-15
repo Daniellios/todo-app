@@ -1,18 +1,22 @@
 "use client";
 
 import { createSlice, PayloadAction, nanoid, current } from "@reduxjs/toolkit";
-import { initialBoards } from "../contstants/initialData";
+import { initialProject } from "../contstants/initialData";
 import tasksLeft from "../helpers/tasksLeft";
 import { setAll, setActive, setCompleted } from "./fliterSlice";
 import { RootState } from "./store";
 
 export const boardListReducer = createSlice({
   name: "boardListReducer",
-  initialState: initialBoards,
+  initialState: initialProject,
   reducers: {
+    editProjectName: (state, action: PayloadAction<string>) => {
+      state.projectName = action.payload;
+    },
+
     addBoard: {
       reducer(state, action: PayloadAction<IBoardListProps>) {
-        state.push(action.payload);
+        state.projectBoards.push(action.payload);
       },
       prepare(boardName: string) {
         return {
@@ -26,13 +30,13 @@ export const boardListReducer = createSlice({
       },
     },
     deleteBoard: (state, action: PayloadAction<string>) => {
-      return state.filter(
+      state.projectBoards = state.projectBoards.filter(
         (list: IBoardListProps) => action.payload !== list.listID
       );
     },
 
     setListName: (state, action: PayloadAction<IBoardListProps>) => {
-      return state.map((list: IBoardListProps) => {
+      state.projectBoards = state.projectBoards.map((list: IBoardListProps) => {
         if (action.payload.listID === list.listID) {
           return {
             ...list,
@@ -43,7 +47,7 @@ export const boardListReducer = createSlice({
       });
     },
     editListName: (state, action: PayloadAction<IBoardListProps>) => {
-      return state.map((list: IBoardListProps) => {
+      state.projectBoards = state.projectBoards.map((list: IBoardListProps) => {
         if (action.payload.listID === list.listID) {
           return {
             ...list,
@@ -55,7 +59,7 @@ export const boardListReducer = createSlice({
     },
     addTask: {
       reducer(state, action: PayloadAction<{ task: ITask; boardID: string }>) {
-        state.map((list: IBoardListProps) => {
+        state.projectBoards.map((list: IBoardListProps) => {
           if (list.listID === action.payload.boardID) {
             list.filteredList.unshift(action.payload.task);
             list.todoList.unshift({ ...action.payload.task });
@@ -111,7 +115,7 @@ export const boardListReducer = createSlice({
         updatedTaskName: string;
       }>
     ) => {
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         if (list.listID === action.payload.ID) {
           let editedTask = list.todoList.find(
             (task: ITask) => task.id === action.payload.taskID
@@ -128,7 +132,7 @@ export const boardListReducer = createSlice({
       action: PayloadAction<{ ID: string; taskID: string }>
     ) => {
       // IMPROVE - pass whole todo list, no need to map into filter?
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         if (list.listID === action.payload.ID) {
           list.todoList = list.todoList.filter(
             (task: ITask) => task.id !== action.payload.taskID
@@ -142,7 +146,7 @@ export const boardListReducer = createSlice({
       state,
       action: PayloadAction<{ ID: string; taskID: string }>
     ) => {
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         if (list.listID === action.payload.ID) {
           list.todoList.filter((task: ITask) => {
             if (task.id === action.payload.taskID) {
@@ -154,7 +158,7 @@ export const boardListReducer = createSlice({
       });
     },
     clearCompleted: (state) => {
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         list.todoList = list.todoList.filter(
           (task: ITask) => !task.isCompleted
         );
@@ -165,19 +169,19 @@ export const boardListReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(setAll, (state, action) => {
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         list.filteredList = list.todoList;
       });
     });
     builder.addCase(setActive, (state, action) => {
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         list.filteredList = list.todoList.filter(
           (task: ITask) => !task.isCompleted
         );
       });
     });
     builder.addCase(setCompleted, (state, action) => {
-      state.map((list: IBoardListProps) => {
+      state.projectBoards.map((list: IBoardListProps) => {
         list.filteredList = list.todoList.filter(
           (task: ITask) => task.isCompleted
         );
@@ -186,9 +190,12 @@ export const boardListReducer = createSlice({
   },
 });
 
-export const selectAllBoards = (state: RootState) => state.boards;
+export const selectAllBoards = (state: RootState) =>
+  state.projects.projectBoards;
+export const selectProject = (state: RootState) => state.projects;
 
 export const {
+  editProjectName,
   addBoard,
   deleteBoard,
   editListName,

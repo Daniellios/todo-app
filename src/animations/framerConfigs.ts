@@ -58,6 +58,21 @@ export const taskFormAnimation = {
   },
 };
 
+export const taskDoneOverlay = {
+  initial: { width: 0 },
+  animate: { width: "100%", transition: { ease: "linear" } },
+  exit: { width: 0, transition: { ease: "linear", delay: 0.1 } },
+};
+
+export const taskDoneText = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: { ease: "linear", delay: 0.2 },
+  },
+  exit: { opacity: 0, transition: { ease: "linear" } },
+};
+
 export const taskFormFoldedContainer = {
   initial: {
     opacity: 0,
