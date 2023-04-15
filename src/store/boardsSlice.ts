@@ -10,6 +10,10 @@ export const boardListReducer = createSlice({
   name: "boardListReducer",
   initialState: initialProject,
   reducers: {
+    editProjectName: (state, action: PayloadAction<string>) => {
+      state.projectName = action.payload;
+    },
+
     addBoard: {
       reducer(state, action: PayloadAction<IBoardListProps>) {
         state.projectBoards.push(action.payload);
@@ -186,9 +190,12 @@ export const boardListReducer = createSlice({
   },
 });
 
-export const selectAllBoards = (state: RootState) => state.boards.projectBoards;
+export const selectAllBoards = (state: RootState) =>
+  state.projects.projectBoards;
+export const selectProject = (state: RootState) => state.projects;
 
 export const {
+  editProjectName,
   addBoard,
   deleteBoard,
   editListName,

@@ -6,7 +6,7 @@ export const initialProject: IProject = {
   projectBoards: [
     {
       listID: nanoid(),
-      title: "To-Do",
+      title: "Management",
       todoList: [],
       listCount: 0,
       filteredList: [],
@@ -14,7 +14,7 @@ export const initialProject: IProject = {
     },
     {
       listID: nanoid(),
-      title: "In Progress ",
+      title: "Coding",
       todoList: [],
       listCount: 0,
       filteredList: [],
@@ -23,7 +23,7 @@ export const initialProject: IProject = {
 
     {
       listID: nanoid(),
-      title: "Done",
+      title: "Testing",
       todoList: [],
       listCount: 0,
       filteredList: [],
