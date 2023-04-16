@@ -9,6 +9,7 @@ import { selectModalStatus } from "../store/uiSlice";
 import BoardModalCreator from "../components/BoardModalCreator";
 import BoardsList from "../components/BoardCanvas/BoardList";
 import "../styles/globals.css";
+import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
   const isOpen = useSelector(selectModalStatus);
@@ -21,14 +22,13 @@ const Home: NextPage = () => {
       </Head>
 
       {isOpen && <div className="overlay"></div>}
-
-      <main className="mx-auto flex flex-col items-center justify-start h-screen w-screen overflow-x-hidden scrollbar">
-        <ControlPanel />
-
+      <ControlPanel />
+      <main className="mx-auto flex flex-col items-center justify-start min-h-full  w-screen overflow-x-hidden ">
         <BoardModalCreator></BoardModalCreator>
 
         <BoardsList></BoardsList>
       </main>
+      <Footer></Footer>
     </>
   );
 };
