@@ -1,7 +1,10 @@
 export const titleInputAnimiation = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.2, ease: "linear" } },
-  exit: { opacity: 0, transition: { duration: 0.2, ease: "linear" } },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.1, ease: "linear" },
+  },
 };
 
 export const titleTextAnimation = {

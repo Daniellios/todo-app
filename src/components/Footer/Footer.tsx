@@ -12,7 +12,7 @@ const footerFont = Space_Grotesk({
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-paletteTeal flex flex-col justify-center z-50 mt-auto  items-center text-center py-4">
+    <footer className="w-full bg-paletteTeal flex flex-col justify-center mt-auto items-center text-center py-4  ">
       <div className="flex space-x-2 justify-center items-centers">
         <Link
           href={"https://t.me/DaBlinni"}
@@ -20,7 +20,7 @@ const Footer = () => {
           rel="noopener noreferrer"
           className="text-paletteDark hover:text-paletteWhite transition-colors"
         >
-          <BsTelegram size={"2rem"}></BsTelegram>
+          <BsTelegram size={"1.5rem"}></BsTelegram>
         </Link>
 
         <Link
@@ -29,13 +29,13 @@ const Footer = () => {
           rel="noopener noreferrer"
           className="text-paletteDark hover:text-paletteWhite transition-colors"
         >
-          <SiGmail size={"2rem"}></SiGmail>
+          <SiGmail size={"1.5rem"}></SiGmail>
         </Link>
       </div>
 
       <Link
         href={"https://my-portfolio-blue-pi.vercel.app"}
-        className={` text-paletteDark font-normal text-lg  sm:text-2xl hover:text-paletteWhite transition ${footerFont.className} mt-2`}
+        className={` text-paletteDark font-normal text-lg  sm:text-xl hover:text-paletteWhite transition ${footerFont.className} mt-2`}
       >
         Desinged {"&"} Built by Daniil Blinnikov
       </Link>

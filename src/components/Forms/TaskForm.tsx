@@ -112,7 +112,7 @@ const TaskForm = ({ listID }: IFormProps) => {
             animate={"visible"}
             exit={"exit"}
             onSubmit={handleSubmit(handleTask)}
-            className="flex flex-col  w-full gap-4 bg-paletteDarkGray "
+            className="flex flex-col  w-full gap-4 bg-paletteDarkGray  "
           >
             <input
               type="text"
@@ -133,7 +133,7 @@ const TaskForm = ({ listID }: IFormProps) => {
                   primaryColor={"teal"}
                   i18n={"ru"}
                   placeholder="Due date"
-                  toggleClassName="text-paletteWhite hover:text-paletteTeal"
+                  toggleClassName="text-paletteWhite hover:text-paletteTeal "
                   asSingle={true}
                   useRange={false}
                   inputName="dates"

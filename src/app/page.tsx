@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
       {isOpen && <div className="overlay"></div>}
       <ControlPanel />
-      <main className="mx-auto flex flex-col items-center justify-start min-h-full  w-screen overflow-x-hidden ">
+      <main className="mx-auto flex flex-col items-center justify-start  h-full w-screen ">
         <BoardModalCreator></BoardModalCreator>
 
         <BoardsList></BoardsList>

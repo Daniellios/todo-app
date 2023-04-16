@@ -6,22 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../store/uiSlice";
 import useTranslation from "next-translate/useTranslation";
 import { editProjectName, selectProject } from "../../store/boardsSlice";
-import { AiOutlineCheck } from "react-icons/ai";
+import EditTitleInput from "../Forms/EditTitleInput";
+import { AnimatePresence } from "framer-motion";
 
 const ControlPanel = () => {
   const { t, lang } = useTranslation("home");
+  const { projectName, id } = useSelector(selectProject);
+  const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
-  const { projectName, id } = useSelector(selectProject);
+  const [title, setTitle] = useState<string>(projectName);
 
   const toggleEdit = (): void => {
     setIsEditing(!isEditing);
   };
-
-  const dispatch = useDispatch();
-
-  const [title, setTitle] = useState<string>(projectName);
 
   const onTitleChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
     setTitle(e.currentTarget.value);
@@ -48,24 +46,17 @@ const ControlPanel = () => {
             </h1>
           )}
 
-          {isEditing && (
-            <input
-              onDoubleClick={toggleEdit}
-              onChange={onTitleChange}
-              value={title}
-              className="h-8 bg-paletteDark rounded"
-              type="text"
-              placeholder={"Project name"}
-            ></input>
-          )}
-
-          {isEditing && (
-            <AiOutlineCheck
-              onClick={applyEditChanges}
-              size={"1.5rem"}
-              className="text-paletteDark cursor-pointer hover:text-paletteWhite "
-            />
-          )}
+          <AnimatePresence>
+            {isEditing && (
+              <EditTitleInput
+                isEditing={isEditing}
+                titleValue={title}
+                doubleClickToggle={toggleEdit}
+                handleChange={onTitleChange}
+                applyEditChange={applyEditChanges}
+              ></EditTitleInput>
+            )}
+          </AnimatePresence>
         </div>
 
         <button onClick={handleOpenBoardCreator} className="regular-button">
