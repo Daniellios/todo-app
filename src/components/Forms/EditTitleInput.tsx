@@ -23,7 +23,6 @@ const EditTitleInput: React.FC<IEditTitleInput> = ({
   doubleClickToggle,
   inputPlaceHolder,
 }) => {
-  // border-[1px]  border-paletteRed outline-none placeholder:text-paletteRed
   return (
     <motion.div
       variants={titleInputAnimiation}
