@@ -20,14 +20,12 @@ const ControlPanel = () => {
   return (
     <div className="w-full bg-paletteTeal flex items-center justify-center p-4 h-24 shadow-md">
       <div className="flex w-full items-center justify-between max-w-[1980px] ">
-        <div className="flex items-center gap-2">
-          <EditTitleInput
-            titleValue={projectName}
-            doubleClickActivation={true}
-            dispatchType="project"
-            inputPlaceHolder="Enter new project name"
-          ></EditTitleInput>
-        </div>
+        <EditTitleInput
+          titleValue={projectName}
+          doubleClickActivation={true}
+          dispatchType="project"
+          inputPlaceHolder="Enter new project name"
+        ></EditTitleInput>
 
         <button onClick={handleOpenBoardCreator} className="regular-button">
           <IoMdAdd className=" text-paletteDark"></IoMdAdd>

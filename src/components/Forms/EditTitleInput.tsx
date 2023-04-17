@@ -98,7 +98,7 @@ const EditTitleInput: React.FC<IEditTitleInput> = ({
             <input
               onDoubleClick={toggleEdit}
               onChange={onTitleChange}
-              placeholder={inputPlaceHolder || "Input new name"}
+              placeholder={inputPlaceHolder || "Enter new name"}
               value={title}
               className={`h-8 bg-paletteDark rounded ${
                 error
