@@ -46,12 +46,15 @@ export const boardListReducer = createSlice({
         return list;
       });
     },
-    editListName: (state, action: PayloadAction<IBoardListProps>) => {
+    editListName: (
+      state,
+      action: PayloadAction<{ listID: string; title: string }>
+    ) => {
       state.projectBoards = state.projectBoards.map((list: IBoardListProps) => {
         if (action.payload.listID === list.listID) {
           return {
             ...list,
-            ...action.payload,
+            title: action.payload.title,
           };
         }
         return list;

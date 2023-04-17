@@ -46,12 +46,10 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
     if (!title) showError();
     else {
       dispatch(
-        dispatch(
-          editListName({
-            ...list,
-            title,
-          })
-        )
+        editListName({
+          ...list,
+          title,
+        })
       );
 
       setBoardTitleName(title);
@@ -124,7 +122,7 @@ const BoardTaskCard: React.FC<IListComponent> = ({ list }) => {
               />
 
               <motion.div
-                key={"board_confirm"}
+                key={"input_confirm"}
                 whileHover={{ scale: 1.2 }}
                 whileTap={
                   boardTitleName ? { scale: 0.7, opacity: 0 } : { rotate: 10 }
